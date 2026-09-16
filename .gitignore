@@ -1,0 +1,2 @@
+# Ignore files generated under any Output directory.
+**/Output/**

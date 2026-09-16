@@ -1,0 +1,16 @@
+CompileFlags:
+  Remove:
+    - -mabi=*
+    - -march=*
+    - -fdiagnostics-show-caret
+  Add:
+    - -target
+    - riscv32-unknown-elf
+    - -Wno-unused-function          # 关闭未使用函数警告
+    - -Wno-unused-variable          # 关闭未使用变量警告
+    - -Wno-unused-parameter         # 关闭未使用形参警告（可选）
+
+Diagnostics:
+  UnusedIncludes: None              # 抑制 clangd 的“未直接包含”提示 另一种写法，等价于完全禁用该检查
+  ClangTidy:
+    Remove: [readability-misleading-indentation]

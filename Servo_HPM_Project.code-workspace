@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+
+		"clangd.arguments": [
+			// 指定 compile_commands.json 的路径，如果它在 build 文件夹中
+			"--query-driver=C:/WorkPlace/sdk_env_v1.11.0/toolchains/rv32imac_zicsr_zifencei_multilib_b_ext-win/bin/riscv32-unknown-elf-gcc", // 指定你的编译器路径
+			"--compile-commands-dir=${workspaceFolder}/Servo_HPM_Project/hpm6e00evk_flash_xip_debug/segger_embedded_studio/Output/BANK0/Exe",
+			"--background-index",
+			"--clang-tidy",
+			"--header-insertion=never",
+			"--log=info",
+
+		],
+		"search.useIgnoreFiles": true,
+		"search.useParentIgnoreFiles": true
+	},
+}
