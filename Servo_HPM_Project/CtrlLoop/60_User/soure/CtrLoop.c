@@ -5,6 +5,7 @@
  *      Author: w
  */
 #include "Drive.h"
+#include "StartupTiming.h"
 #include "SV_PanelCtl.h"
 #include "SV_FuncVar.h"
 #include "SV_IncEncode.h"
@@ -19,6 +20,9 @@
 #include "SV_KingKongEnc.h"
 #include "SV_RtT036.h"
 #include "Mit_CtrLoop.h"
+#include "SensorlessProduction.h"
+#include "SensorlessShadow.h"
+#include "SensorlessCanopen.h"
 
 extern float ActualTorqueClose;
 extern float TargetTorqueClose;
@@ -124,6 +128,9 @@ void CtrLoop_init(CTRLOOP_TYPE *v)//Code in system init,各个控制模块初始
     ExPosFb_Init();
     PosFullClose_Init();
     CurFullPiReg_init(&CurFullReg);
+    SensorlessShadow_Init();
+    SensorlessProduction_Init();
+    SensorlessCanopen_Init();
     
     #if SERVOTYPE == SERVO_MODBUS
     CM_busCtrl_init(&CM_BusCtrl);
@@ -140,7 +147,8 @@ void CtrLoop_init(CTRLOOP_TYPE *v)//Code in system init,各个控制模块初始
 
 void CtrLoop_rst(CTRLOOP_TYPE *v)//Code in Servo Stop,1ms timer isr
 {
-
+    (void)v;
+    SensorlessShadow_Reset();
 }
 
 #if SERVOTYPE == SERVO_ETHERCAT || SERVOTYPE == SERVO_CANOPEN
@@ -190,6 +198,19 @@ void Updata_EcatFb(void)
 
 void CtrLoop_CalcFirst(void)//Code in PWM ISR
 {
+    /* Dedicated sensorless test firmware: no legacy outer-loop ownership. */
+    uint32_t timing_mark=StartupTiming_Cycle();
+    SensorlessCanopen_PwmGuard();
+    SensorlessShadow_PreFoc();
+    Etheta.Ethetapk = Etheta.EtaInerGet;
+    g_startup_timing.pre=StartupTiming_Cycle()-timing_mark;
+    timing_mark=StartupTiming_Cycle();
+    ToqLoop_Calc();
+    g_startup_timing.torque=StartupTiming_Cycle()-timing_mark;
+    timing_mark=StartupTiming_Cycle();
+    SensorlessShadow_PostFoc();
+    g_startup_timing.post=StartupTiming_Cycle()-timing_mark;
+    return;
     //第一编码器
     if(DPI_EncType == 2 || DPI_EncType == 3)
     {
@@ -288,8 +309,17 @@ void CtrLoop_CalcFirst(void)//Code in PWM ISR
 
 void CtrLoop_CalcSecond(void)//Code in PWM ISR
 {
-    Etheta.calc(&Etheta);  //97/150
-	ToqLoop_Calc();// 1800/150   1400/150(增量式编码器)    
+    uint32_t timing_mark=StartupTiming_Cycle();
+    SensorlessCanopen_PwmGuard();
+    SensorlessShadow_PreFoc();
+    Etheta.Ethetapk = Etheta.EtaInerGet;
+    g_startup_timing.pre=StartupTiming_Cycle()-timing_mark;
+    timing_mark=StartupTiming_Cycle();
+    ToqLoop_Calc();
+    g_startup_timing.torque=StartupTiming_Cycle()-timing_mark;
+    timing_mark=StartupTiming_Cycle();
+    SensorlessShadow_PostFoc();
+    g_startup_timing.post=StartupTiming_Cycle()-timing_mark;
 }
 
 

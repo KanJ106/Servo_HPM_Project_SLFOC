@@ -1,2 +1,20 @@
 # Ignore files generated under any Output directory.
 **/Output/**
+
+# Local IDE state and shortcuts
+*.emSession
+*.lnk
+.vscode/
+
+# Generated build and test artifacts
+*.d
+*.elf
+*.exe
+*.bin
+*.hex
+*.map
+**/__pycache__/
+*.py[cod]
+
+# Board captures, release images and research snapshots are kept locally.
+Servo_HPM_Project/diagnostics/

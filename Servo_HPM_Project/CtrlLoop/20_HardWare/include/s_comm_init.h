@@ -3,6 +3,19 @@
 #include "r_cg_project.h"
 #include "MCU_Fw.h"
 
+/* Dedicated telemetry build: UART0/485 belongs to VOFA, not HarmoCore.
+ * Set to 0 at build time to restore the legacy protocol. */
+#ifndef SENSORLESS_VOFA_ENABLE
+#if defined(SENSORLESS_CANOPEN_BUILD)
+#define SENSORLESS_VOFA_ENABLE 1
+#else
+#define SENSORLESS_VOFA_ENABLE 0
+#endif
+#endif
+#if SENSORLESS_VOFA_ENABLE
+void SensorlessVofa_Service(void);
+#endif
+
 #define     SCI_BUFF_SIZE  2070    //数据缓冲区大小
 #define     SCI_STOPBITP_2 1     //2位停止位
 #define     SCI_STOPBITP_1 0     //1位停止位

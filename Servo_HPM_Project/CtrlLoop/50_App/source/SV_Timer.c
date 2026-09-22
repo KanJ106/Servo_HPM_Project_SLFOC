@@ -1,4 +1,6 @@
 #include "userdefine.h"
+#include "SensorlessCanopen.h"
+#include "s_encode_init.h"
 #include "r_cg_Project.h"
 #include "SV_PanelCtl.h"
 #include "SV_I2c.h"
@@ -35,6 +37,7 @@ void EncodeErrPeocess(void);
 void AppTime1Ms(void)
 {   
     //ServiceDog();
+    SensorlessCanopen_Tick1ms();
     IIC_Process();				//IIC存储类 3.21us
 
 	if(PARAREDY == Glo_IIcReadAll)	//参数未初始化完毕不执行应用程序
@@ -99,6 +102,10 @@ void AppTime1Ms(void)
         MCUTemperCtl();             //MCU温度计算
 		Monitor_1ms();
 		TS_Store_10Min();
+        SensorlessCanopen_Service1ms();
+#if defined(SENSORLESS_CANOPEN_BUILD)
+        SensorlessEncoder_Service1ms(StateMachine.RegulFlg);
+#endif
              
         #if (SERVO_HARDWARE == HARDWARE_AC0)
 		DO_Handle();
@@ -150,6 +157,8 @@ void AppTime1msMainLoop(void)
 
 void EncodeErrPeocess(void)
 {
+    /* No encoder acquisition in this sensorless-only candidate. */
+    return;
     //故障保护类
     if(!RamServo->VF_Test)
     {

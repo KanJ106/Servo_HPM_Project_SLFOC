@@ -6,6 +6,7 @@
  */
 
 #include "board.h"
+#include "StartupTiming.h"
 #include "hpm_debug_console.h"
 #include "Hpm_ISR.h"
 
@@ -156,6 +157,7 @@ int main(void)
     #endif  
 
     board_init();
+    g_startup_timing.cpu_hz = clock_get_frequency(clock_cpu0);
 
     #if HARDWARE_VER_SEL == HARDWARE_VER_0
     board_init_led_pins();
@@ -226,6 +228,8 @@ int main(void)
     Panel_KeyInit();
     Sci_TorSensorInit();
 
+    /* Sensorless build uses isolated, read-only RT position diagnostics. */
+#if !defined(SENSORLESS_CANOPEN_BUILD)
     if(DPI_EncType == 2 || DPI_EncType == 3)
     {
         DPT_ParaInit();
@@ -244,6 +248,9 @@ int main(void)
     {
     }
 
+#else
+    SensorlessEncoder_Init(DPI_EncType);
+#endif
     Adc_Init();
     #if CURRENT_MODE == CURRENT_SDFM
     Sigma_Delta_Init();

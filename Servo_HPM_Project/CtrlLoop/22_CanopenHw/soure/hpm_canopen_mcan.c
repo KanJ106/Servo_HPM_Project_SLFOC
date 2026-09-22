@@ -152,6 +152,8 @@ void hpm_mcan_get_message_from_rxfifo(const struct device *dev, uint32_t fifo_in
 
 
 
+volatile uint32_t g_sl_can_rx0_deferred;
+volatile uint32_t g_sl_can_rx0_highwater;
 uint8_t can_recvMsg_process(uint8_t sel)
 {
     MCAN_Type *can = hpm_canopen_config[0].base;
@@ -162,6 +164,8 @@ uint8_t can_recvMsg_process(uint8_t sel)
     if(sel == 0)
     {   
         uint8_t fifolen = (can->RXF0S)&0x3F;
+        if(fifolen > g_sl_can_rx0_highwater) g_sl_can_rx0_highwater=fifolen;
+        if(fifolen > 4U) { g_sl_can_rx0_deferred += fifolen-4U; fifolen=4U; }
         for(uint8_t i = 0 ; i < fifolen ; i++)
         {
             hpm_mcan_get_message_from_rxfifo(&hpm_canopen_dev[0], 0);

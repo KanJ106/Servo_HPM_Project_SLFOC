@@ -81,6 +81,8 @@ typedef enum{
     rs2	            = 0x0036|FAULT_RESET_NO  |FAULT_LEVEL1,//ER.036  
     rs3	            = 0x0037|FAULT_RESET_NO  |FAULT_LEVEL1,//ER.037   
     rs4	            = 0x0038|FAULT_RESET_NO  |FAULT_LEVEL1,//ER.038   
+    SensorlessParamErr = 0x003A|FAULT_RESET_YES|FAULT_LEVEL1,
+    SensorlessTrackErr = 0x003B|FAULT_RESET_YES|FAULT_LEVEL1,
     EncoderErr_M    = 0x0039|FAULT_RESET_NO  |FAULT_LEVEL2,//ER.039    
 //~0x0(1)0FF故障码保留
 //---------------------------------------------------------

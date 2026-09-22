@@ -13,6 +13,7 @@
 #include "CO_ODinterface.h"
 #include "OD.h"
 #include "SV_FuncCode.h"
+#include "SV_StateMachine.h"
 
 #if CO_VERSION_MAJOR < 4
 #error This Object dictionary is compatible with CANopenNode V4.0 and above!
@@ -2772,6 +2773,9 @@ static OD_ATTR_OD OD_entry_t ODList_H6xxx[] = {
  * @param  param1 : void
  * @return uint8_t : 0 not error
  */
+#include "SensorlessCanopen.h"
+extern OD_entry_t g_sl_can_od[SL_CAN_OD_COUNT];
+extern void SensorlessCanopen_InitOd(void);
 uint8_t CO_init_OD(void)
 {
     
@@ -2787,7 +2791,7 @@ uint8_t CO_init_OD(void)
         OD_Size_H2xxx += _OD_Para_Sub[i].size;
     }
 
-    OD_Size_All = OD_Size_H1xxx + OD_Size_H2xxx + OD_Size_H6xxx;
+    OD_Size_All = OD_Size_H1xxx + OD_Size_H2xxx + OD_Size_H6xxx + SL_CAN_OD_COUNT;
 
     if(OD_Size_All >= OD_ALL_NUM)
     {
@@ -2810,6 +2814,9 @@ uint8_t CO_init_OD(void)
     memcpy(ODList_Index, ODList_H1xxx, sizeof(ODList_H1xxx));
 
     ODList_Index += OD_Size_H1xxx;
+    SensorlessCanopen_InitOd();
+    memcpy(ODList_Index, g_sl_can_od, sizeof(OD_entry_t)*SL_CAN_OD_COUNT);
+    ODList_Index += SL_CAN_OD_COUNT;
 
     //P0-PF参数组
     for(uint16_t i = 0; i < (sizeof(_OD_Para_Sub)/sizeof(OD_Sub_t)) ;i++)
@@ -2852,6 +2859,8 @@ uint8_t CO_init_OD(void)
  */
 ODR_t OD_writeOriginal_servoPara(OD_stream_t* stream, const void* buf, OD_size_t count, OD_size_t* countWritten)
 {
+    /* Legacy drive parameter writes must not change calibration during a test. */
+    if(StateMachine.RegulFlg != 0U) return ODR_DATA_DEV_STATE;
     TYPE_WORD Rx_Func;
     TYPE_WORD W_Data;
 

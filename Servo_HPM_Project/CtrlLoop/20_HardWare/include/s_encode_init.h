@@ -24,5 +24,11 @@
 
 
 extern void EncodeSci_Main(void);
+#if defined(SENSORLESS_CANOPEN_BUILD)
+#include "SensorlessEncoderMonitor.h"
+extern volatile SL_ENCODER_MONITOR g_sl_encoder;
+void SensorlessEncoder_Init(uint16_t type);
+void SensorlessEncoder_Service1ms(uint16_t drive_active);
+#endif
 extern uint8_t  UartRxuff[22];
 #endif

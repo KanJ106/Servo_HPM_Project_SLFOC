@@ -6,6 +6,11 @@ Includes
 #include <stdint.h>
 #include "SV_DataBase.h"
 #include "SV_Sci.h"
+#if defined(SENSORLESS_CANOPEN_BUILD)
+#include "s_encode_init.h"
+#include "SensorlessCanopen.h"
+#include "SensorlessVofa.h"
+#endif
 
 uint16_t CrcCheck = 0xFFFF;
 uint16_t CrcCheck1 = 0xFFFF;
@@ -16,6 +21,50 @@ uint16_t CrcCheck5 = 0xFFFF; //mqb新上位机
 uint16_t TxCrcCheck = 0xFFFF;
 
 UART_Type *testUART;
+#if SENSORLESS_VOFA_ENABLE
+volatile SL_VOFA_DIAG g_sl_vofa = {1U,0U,0U,0U,0U,0U};
+static uint32_t vofa_last_ms;
+static uint16_t vofa_tx_active;
+
+/* Main-loop service only. At most one 32-byte FIFO fill, no waits, no printf.
+ * UART0 is dedicated to output in this build; RX cannot issue motor commands. */
+void SensorlessVofa_Service(void)
+{
+    uint32_t now=g_sl_can_elapsed_ms, seq, motor, output, valid, drive, age, tick;
+    uint8_t packet[SL_VOFA_FRAME_BYTES];
+    unsigned i;
+    if(!g_sl_vofa.initialized) return;
+    if(vofa_tx_active) {
+        if(!SCOPE_TXEND_FLAG) return; /* keep DE until final stop bit is out */
+        SCI_SelectToRx();
+        vofa_tx_active=0U;
+    }
+    /* Drop received bytes without parsing any legacy control/boot commands. */
+    SCOPE_ResetFIFO;
+    if((uint32_t)(now-vofa_last_ms)<10U) return;
+    vofa_last_ms=now; /* no backlog bursts when the main loop is late */
+    if(!SCOPE_TXEND_FLAG || SCOPE_TXFIF0_NUM) {
+        g_sl_vofa.busy_skips++; return;
+    }
+    seq=g_sl_encoder.sequence;
+    if(seq&1U) {g_sl_vofa.snapshot_skips++;return;}
+    motor=g_sl_encoder.motor_raw; output=g_sl_encoder.output_raw;
+    valid=g_sl_encoder.valid; drive=g_sl_encoder.drive_active;
+    age=g_sl_encoder.age_ms; tick=g_sl_encoder.tick_ms;
+    if(seq!=g_sl_encoder.sequence) {g_sl_vofa.snapshot_skips++;return;}
+    /* A frozen encoder service must not keep claiming fresh positions. */
+    {
+        static uint32_t last_tick, changed_at;
+        if(tick!=last_tick) {last_tick=tick; changed_at=now;}
+        if(age>2U || (uint32_t)(now-changed_at)>20U) valid=0U;
+    }
+    SlVofa_Pack(packet,motor,output,valid,drive,g_sl_vofa.frames);
+    SCI_SelectToTx();
+    for(i=0;i<SL_VOFA_FRAME_BYTES;i++) SCOPE_TX_DATA=packet[i];
+    vofa_tx_active=1U;
+    g_sl_vofa.frames++;
+}
+#endif
 
 Uart_INFO SCI_CtlVal=
 {
@@ -47,17 +96,39 @@ void Scope_Init(uint8_t ch, uint16_t baud, uint8_t data_format)
     HPM_GPIO0->DO[GPIO_DI_GPIOA].SET = 1 << 9;
 
     clock_add_to_group(ModbusCLK, 0);
+#if SENSORLESS_VOFA_ENABLE
+    /* Dedicated UART0 telemetry: 80 MHz / (8 * 4) = 2.5 Mbaud. */
+    clock_set_source_divider(ModbusCLK, clk_src_pll1_clk0, 10);
+#endif
     testUART = ModbusSci;
     uart_config_t config = {0};
     uart_default_config(ModbusSci, &config);
+#if SENSORLESS_VOFA_ENABLE
+    config.baudrate = 2500000U;
+#else
     config.baudrate = 115200U;
-    config.dma_enable = true; 
+#endif
+    config.dma_enable = (SENSORLESS_VOFA_ENABLE == 0); 
     config.src_freq_in_hz = clock_get_frequency(ModbusCLK);
     config.fifo_enable = true;
     config.rx_fifo_level = uart_fifo_16_bytes;
     config.tx_fifo_level = uart_fifo_16_bytes;
 
+#if SENSORLESS_VOFA_ENABLE
+    g_sl_vofa.initialized=0U;
+    if(uart_init(ModbusSci, &config)!=status_success) {
+        g_sl_vofa.init_errors++;
+        SCI_SelectToRx();
+        return;
+    }
+    g_sl_vofa.initialized=1U;
+    vofa_last_ms=g_sl_can_elapsed_ms;
+    vofa_tx_active=0U;
+    SCI_SelectToRx();
+    return; /* telemetry uses bounded FIFO writes, never DMA or legacy CRC */
+#else
     uart_init(ModbusSci, &config);
+#endif
 
     dmamux_config(HPM_DMAMUX, DMA_SOC_CHN_TO_DMAMUX_CHN(HPM_HDMA, 0), HPM_DMA_SRC_UART0_TX, true);
 
@@ -349,6 +420,10 @@ void SCI_RxInquire(void)		//接收数据查询
 
 void Scope_DmaSend(uint8_t* buff,uint16_t Len)
 {
+#if SENSORLESS_VOFA_ENABLE
+    (void)buff; (void)Len;
+    return;
+#endif
     if(Len == 0) return;
 
     HPM_HDMA->CHCTRL[0].CTRL &= 0xFFFFFFFE;

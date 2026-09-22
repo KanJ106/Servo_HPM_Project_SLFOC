@@ -5,6 +5,8 @@
 #include "hpm_acmp_drv.h"
 
 uint16_t ADCBuf[21]= {3276};
+/* Diagnostic copies of the exact SDM samples consumed this cycle. */
+int32_t g_sl_sdm_raw_u, g_sl_sdm_raw_v;
 
 #if SERVO_MCU == HPM_6E00
 
@@ -462,10 +464,12 @@ void Get_AdcValue(void)
     int32_t temp4;
 
     temp1 = CurSample_SDM->CH[SDM_Channel1].SDATA >> 16;
+    g_sl_sdm_raw_u = temp1;
     temp1 = -temp1;
     ADCBuf[0] = (uint16_t)temp1;
 
     temp2 = CurSample_SDM->CH[SDM_Channel2].SDATA >> 16;
+    g_sl_sdm_raw_v = temp2;
     temp2 = -temp2;
     ADCBuf[1] = (uint16_t)temp2;
 

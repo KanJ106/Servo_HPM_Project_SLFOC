@@ -2133,6 +2133,11 @@ void BootLoaderProcess(void)
 *******************************************************************************/
 void SCI_Process(uint8_t ch)
 {
+#if SENSORLESS_VOFA_ENABLE
+    (void)ch;
+    SensorlessVofa_Service();
+    return;
+#endif
     if((IIcTask.Handle != TASK_FACSAVE )&& (IIcTask.Handle != TASK_DEFSAVE))//恢复出厂值和默认值时不能通信
     {
         SCI_RxInquire();

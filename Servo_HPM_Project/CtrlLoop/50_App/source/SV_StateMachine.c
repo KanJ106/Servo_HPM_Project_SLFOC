@@ -24,6 +24,9 @@
 #include "TorClosedCtrLoop.h"
 #include "Mit_CtrLoop.h"
 #include "canopen_interface.h"
+#ifdef SENSORLESS_CANOPEN_BUILD
+#include "SensorlessCanopen.h"
+#endif
 
 Uint8 PwmBrkFlag = 0;
 
@@ -174,6 +177,15 @@ static void SM_ReadyJudge(void)
 
 static void SM_CmdInCheck()
 {
+#ifdef SENSORLESS_CANOPEN_BUILD
+    /* Exclusive debug owner supplies only the command; normal ready, charge,
+       brake sequencing and fault handling below remain authoritative. */
+    if (SensorlessJlink_OwnsControl()) {
+        StateMachine.CmdIn.all = 0;
+        StateMachine.CmdIn.bit.INRUN = SensorlessJlink_EnableRequested();
+        return;
+    }
+#endif
 	TCiA402Axis*pLocalAxes = &LocalAxes;
 	TYPE_STATEMACHINE *sm  = &StateMachine;
 

@@ -1,0 +1,85 @@
+{
+  "status": "PENDING_CONFIRMATION_NOT_FOR_MOTION",
+  "description": "铭牌原始值与条件换算。source_recipe 含 null，不能直接应用；未更改固件或运行参数。",
+  "nameplate": {
+    "dc_bus_v": 48,
+    "rated_output_w": 157.2,
+    "rated_torque_nm": 0.5,
+    "peak_torque_nm": 1.5,
+    "rated_current_arms": 4.5,
+    "peak_current_arms": 13.5,
+    "rated_speed_rpm": 3000,
+    "max_speed_rpm": 4800,
+    "torque_constant_nm_per_arms": 0.11,
+    "rotor_inertia_kg_m2": 0.000011,
+    "bemf_v_per_krpm": 6.7,
+    "line_resistance_ohm": [
+      0.47,
+      0.46,
+      0.46
+    ],
+    "winding_connection": "star",
+    "reported_phase_inductance_h": 0.00046,
+    "phase_inductance_unit_assumption": "本轮数值0.46沿用前文mH单位；不是已确认的Ld/Lq。",
+    "line_terminal_inductance_h": [
+      0.00037,
+      0.00039,
+      0.00044
+    ],
+    "pole_label_original": "极对数（2P）10",
+    "pole_pairs_confirmed": 10,
+    "pole_pairs_confirmation": "用户明确确认极对数为10，单位标注（2p）；程序按10对极配置。"
+  },
+  "joint_module": {
+    "reduction_ratio_motor_to_output": 101,
+    "has_brake": false,
+    "continuous_rotation_permitted": null,
+    "mechanical_travel_limits": null,
+    "test_load": null
+  },
+  "derived_conditional": {
+    "rated_current_peak_a": 6.3639610306789285,
+    "peak_current_peak_a": 19.091883092036785,
+    "current_assumption": "铭牌 Arms 对应控制模型的正弦相/等效星形端子电流有效值",
+    "torque_constant_nm_per_peak_a": 0.07778174593052023,
+    "mean_line_resistance_ohm": 0.4633333333333333,
+    "equivalent_star_mean_rs_ohm": 0.23166666666666666,
+    "resistance_assumption": "三项为相同条件下测得的 UV/VW/WU 直流线间电阻；采用平衡等效星形模型，未补偿线缆和温升",
+    "mean_line_terminal_inductance_h": 0.0004,
+    "inductance_warning": "用户补充相电感0.46mH，前三项为线间测量；频率及转子角度未知，两组数据不能视为同条件下的等价量，暂不据此确定Ld/Lq。",
+    "output_rpm_at_rated_motor_speed": 29.7029702970297,
+    "output_rpm_at_max_motor_speed": 47.524752475247524,
+    "rated_mechanical_power_from_torque_w": 157.07963267948966
+  },
+  "source_recipe": {
+    "recipe_id": null,
+    "recipe_revision": 1,
+    "phase_rs_ohm": null,
+    "phase_ld_h": null,
+    "phase_lq_h": null,
+    "current_base_a": null,
+    "voltage_base_v": null,
+    "rated_current_a": 6.3639610306789285,
+    "current_limit_a": null,
+    "max_speed_rpm": null,
+    "current_bandwidth_hz": null,
+    "pole_pairs": 10,
+    "allow_continuous_rotation": 0
+  },
+  "pending": [
+    "额定电流口径及瞬时最大电流允许时长",
+    "相电感0.46的单位确认、与线间测量值的条件核对及 Ld/Lq",
+    "反电势线/相、RMS/峰值口径",
+    "板级 current_base_a / voltage_base_v 标定",
+    "首轮测试电流、速度、带宽与机械连续旋转许可"
+  ],
+  "notes": [
+    "48V 为供电额定值，不是软件 voltage_base_v。",
+    "13.5Arms 为瞬时规格，缺少允许持续时间，不作为测试限流默认值。",
+    "4800rpm 是电机最高转速，不作为完整关节模组首轮测试速度。",
+    "反电势系数尚未换算磁链，也没有强行写入现有配方。",
+    "减速比仅用于电机轴/输出轴单位换算，不能替代10对极的电角度换算。",
+    "无抱闸；现有固件平台抱闸配置尚未据此修改，需核查实际使能/停止配置。",
+    "输出轴转速换算是规格换算，不是首轮允许测试速度。"
+  ]
+}

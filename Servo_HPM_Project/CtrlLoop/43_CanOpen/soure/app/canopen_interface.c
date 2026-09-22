@@ -217,7 +217,7 @@ static void Canopen_MotorEmcyProcess(CO_t *coObj)
     }
 }
 
-uint32_t runcnt = 0;
+
 void CanopenHeartbeatSyncGuard(CO_t *coObj, uint32_t diff_us)
 {
     uint32_t period_us;
@@ -278,7 +278,6 @@ void CanopenHeartbeatSyncGuard(CO_t *coObj, uint32_t diff_us)
      */
     coObj->NMT->HBproducerTimer = diff_us + 1U;
 
-    runcnt++;
 }
 
 uint8_t canopen_init(void)

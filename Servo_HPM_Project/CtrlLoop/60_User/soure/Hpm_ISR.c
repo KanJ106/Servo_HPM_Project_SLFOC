@@ -1,4 +1,7 @@
 #include "Hpm_ISR.h"
+#include "SensorlessShadow.h"
+#include "StartupTiming.h"
+volatile STARTUP_TIMING g_startup_timing = { .magic=0x53544d31U, .abi=3U, .sample_hz=16000U };
 #include "hpm_interrupt.h"
 #include "hpm_soc_irq.h"
 #include "ecatappl.h"
@@ -15,6 +18,14 @@
 #include "SV_ModbusFirm.h"
 
 uint16_t testpwmcnt;
+volatile uint32_t g_startup_pwm_isr_last_cycles, g_startup_pwm_isr_max_cycles;
+volatile uint32_t g_startup_pwm_isr_samples;
+static inline uint32_t Startup_ReadCycle(void)
+{
+    uint32_t cycles;
+    __asm volatile ("csrr %0, mcycle" : "=r"(cycles) :: "memory");
+    return cycles;
+}
 
 extern void AppTime1Ms(void);
 extern void EcatDcOffsetCacl(void);
@@ -45,6 +56,13 @@ SDK_DECLARE_EXT_ISR_M(BOARD_APP_PWM_IRQ, CMP_isr_pwm)
 void CMP_isr_pwm(void)
 {
     volatile uint32_t flags;
+    uint32_t startup_isr_begin=Startup_ReadCycle();
+    STARTUP_TIMING_EVENT timing={0};
+    uint32_t timing_trace=g_sensorless_trace.sequence;
+    uint32_t timing_drive=StateMachine.RegulFlg;
+    uint32_t timing_pwm=g_sensorless_shadow.pwm_counter;
+    uint32_t timing_mark;
+    timing.entry_state=(uint32_t)g_sensorless_shadow.startup.state;
 
     flags = pwmv2_get_cmp_irq_status(PWM);
     pwmv2_clear_cmp_irq_status(PWM, flags);
@@ -77,10 +95,13 @@ void CMP_isr_pwm(void)
             Tor_Sensor_Precess();
         }
         
+        timing.communication=Startup_ReadCycle()-startup_isr_begin;
         CtrLoop_CalcFirst();
+        timing_mark=Startup_ReadCycle();
         
         OscilloscopeSampling_us();
         OscilloscopeSampling_Fault();
+        timing.scope=Startup_ReadCycle()-timing_mark;
     }
 
     #if SERVOTYPE == SERVO_CAN
@@ -98,6 +119,33 @@ void CMP_isr_pwm(void)
     ModBus_Process();
     #endif
 
+    if (flags & PWM_IRQ_STS_CMP(16)) {
+        uint32_t elapsed=Startup_ReadCycle()-startup_isr_begin;
+        g_startup_pwm_isr_last_cycles=elapsed;
+        if(elapsed>g_startup_pwm_isr_max_cycles) g_startup_pwm_isr_max_cycles=elapsed;
+        ++g_startup_pwm_isr_samples;
+        timing.tick=g_startup_pwm_isr_samples;
+        timing.exit_state=(uint32_t)g_sensorless_shadow.startup.state;
+        timing.trace_written=(timing_trace!=g_sensorless_trace.sequence);
+        timing.elapsed=elapsed;
+        timing.pre=g_startup_timing.pre;
+        timing.torque=g_startup_timing.torque;
+        timing.post=g_startup_timing.post;
+        timing.acquisition=g_startup_timing.acquisition;
+        timing.transform=g_startup_timing.transform;
+        timing.current_pi=g_startup_timing.current_pi;
+        timing.pwm=g_startup_timing.pwm;
+        timing.monitor=g_startup_timing.monitor;
+        if(!g_startup_timing.budget_cycles && g_startup_timing.cpu_hz)
+            g_startup_timing.budget_cycles=g_startup_timing.cpu_hz/g_startup_timing.sample_hz;
+        /* Reuse reserved stage 14 / bin 30 for the ONE commit cycle.
+         * No extra clock reads, record buffers or per-PWM metric computation. */
+        if(timing_drive && g_sensorless_shadow.startup.probe.frame_committed
+            && g_sensorless_shadow.startup.probe.frame_tick==timing_pwm) {
+            timing.entry_state=14U;timing.trace_written=0U;
+        }
+        StartupTiming_Accumulate(&g_startup_timing,&timing,timing_drive);
+    }
     //testpwmcnt = PWM->CNT_VAL[0] >> 8;
 
     //// 5 us before the 16K interrupt

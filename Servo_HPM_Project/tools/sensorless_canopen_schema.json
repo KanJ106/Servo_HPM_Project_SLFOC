@@ -1,0 +1,943 @@
+{
+  "protocol": 1,
+  "mailbox_abi": 7,
+  "endianness": "little",
+  "scalar_bytes": 4,
+  "objects": {
+    "0x2f00": [
+      {
+        "sub": 1,
+        "name": "protocol",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 2,
+        "name": "request_seq",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 3,
+        "name": "command",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 4,
+        "name": "arm_key",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 5,
+        "name": "direction",
+        "type": "int32_t"
+      },
+      {
+        "sub": 6,
+        "name": "target_speed_rpm",
+        "type": "int32_t"
+      },
+      {
+        "sub": 7,
+        "name": "acknowledge_seq",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 8,
+        "name": "result",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 9,
+        "name": "heartbeat_counter",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 10,
+        "name": "watchdog_ms",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 11,
+        "name": "abort_reason",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 12,
+        "name": "pending",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 13,
+        "name": "firmware_version",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 14,
+        "name": "parameter_version",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 15,
+        "name": "parameter_sequence",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 16,
+        "name": "elapsed_ms",
+        "type": "uint32_t"
+      }
+    ],
+    "0x2f01": [
+      {
+        "sub": 1,
+        "type": "uint32_t",
+        "name": "recipe_id"
+      },
+      {
+        "sub": 2,
+        "type": "uint32_t",
+        "name": "recipe_revision"
+      },
+      {
+        "sub": 3,
+        "type": "float",
+        "name": "phase_rs_ohm"
+      },
+      {
+        "sub": 4,
+        "type": "float",
+        "name": "phase_ld_h"
+      },
+      {
+        "sub": 5,
+        "type": "float",
+        "name": "phase_lq_h"
+      },
+      {
+        "sub": 6,
+        "type": "float",
+        "name": "current_base_a"
+      },
+      {
+        "sub": 7,
+        "type": "float",
+        "name": "voltage_base_v"
+      },
+      {
+        "sub": 8,
+        "type": "float",
+        "name": "rated_current_a"
+      },
+      {
+        "sub": 9,
+        "type": "float",
+        "name": "current_limit_a"
+      },
+      {
+        "sub": 10,
+        "type": "float",
+        "name": "max_speed_rpm"
+      },
+      {
+        "sub": 11,
+        "type": "float",
+        "name": "current_bandwidth_hz"
+      },
+      {
+        "sub": 12,
+        "type": "uint16_t",
+        "name": "pole_pairs"
+      },
+      {
+        "sub": 13,
+        "type": "uint16_t",
+        "name": "allow_continuous_rotation"
+      }
+    ],
+    "0x2f02": [
+      {
+        "sub": 1,
+        "type": "uint32_t",
+        "name": "mask"
+      },
+      {
+        "sub": 2,
+        "type": "float",
+        "name": "align_angle_turns"
+      },
+      {
+        "sub": 3,
+        "type": "float",
+        "name": "align_current_pu"
+      },
+      {
+        "sub": 4,
+        "type": "float",
+        "name": "startup_iq_pu"
+      },
+      {
+        "sub": 5,
+        "type": "float",
+        "name": "iq_limit_pu"
+      },
+      {
+        "sub": 6,
+        "type": "float",
+        "name": "handoff_speed_rpm"
+      },
+      {
+        "sub": 7,
+        "type": "float",
+        "name": "open_loop_accel_rpm_s"
+      },
+      {
+        "sub": 8,
+        "type": "float",
+        "name": "run_accel_rpm_s"
+      },
+      {
+        "sub": 9,
+        "type": "float",
+        "name": "speed_kp"
+      },
+      {
+        "sub": 10,
+        "type": "float",
+        "name": "speed_ki"
+      },
+      {
+        "sub": 11,
+        "type": "uint16_t",
+        "name": "minimum_lock_quality"
+      },
+      {
+        "sub": 12,
+        "type": "uint32_t",
+        "name": "align_ms"
+      },
+      {
+        "sub": 13,
+        "type": "uint32_t",
+        "name": "lock_dwell_ms"
+      },
+      {
+        "sub": 14,
+        "type": "uint32_t",
+        "name": "blend_ms"
+      },
+      {
+        "sub": 15,
+        "type": "uint32_t",
+        "name": "lock_timeout_ms"
+      },
+      {
+        "sub": 16,
+        "type": "uint32_t",
+        "name": "unlock_dwell_ms"
+      },
+      {
+        "sub": 17,
+        "type": "uint32_t",
+        "name": "monitor_dwell_ms"
+      },
+      {
+        "sub": 18,
+        "type": "uint32_t",
+        "name": "fallback_ready_ms"
+      },
+      {
+        "sub": 19,
+        "type": "uint32_t",
+        "name": "stop_dwell_ms"
+      },
+      {
+        "sub": 20,
+        "type": "uint32_t",
+        "name": "stop_timeout_ms"
+      },
+      {
+        "sub": 21,
+        "type": "int32_t",
+        "name": "fallback_max_angle_error_deg"
+      },
+      {
+        "sub": 22,
+        "type": "int32_t",
+        "name": "monitor_max_angle_error_deg"
+      },
+      {
+        "sub": 23,
+        "type": "int32_t",
+        "name": "monitor_max_speed_error_rpm"
+      },
+      {
+        "sub": 24,
+        "type": "int32_t",
+        "name": "stop_speed_rpm"
+      },
+      {
+        "sub": 25,
+        "type": "float",
+        "name": "sensorless_exit_speed_rpm"
+      },
+      {
+        "sub": 26,
+        "type": "uint16_t",
+        "name": "minimum_hfi_quality"
+      },
+      {
+        "sub": 27,
+        "type": "uint16_t",
+        "name": "hfi_enable"
+      },
+      {
+        "sub": 28,
+        "type": "uint16_t",
+        "name": "allow_open_loop_fallback"
+      },
+      {
+        "sub": 29,
+        "type": "uint32_t",
+        "name": "hfi_lock_dwell_ms"
+      },
+      {
+        "sub": 30,
+        "type": "uint32_t",
+        "name": "hfi_timeout_ms"
+      },
+      {
+        "sub": 31,
+        "type": "float",
+        "name": "hfi_injection_frequency_hz"
+      },
+      {
+        "sub": 32,
+        "type": "float",
+        "name": "hfi_injection_current_pu"
+      },
+      {
+        "sub": 33,
+        "type": "float",
+        "name": "hfi_response_lpf_alpha"
+      },
+      {
+        "sub": 34,
+        "type": "float",
+        "name": "hfi_speed_lpf_alpha"
+      },
+      {
+        "sub": 35,
+        "type": "float",
+        "name": "hfi_tracking_kp"
+      },
+      {
+        "sub": 36,
+        "type": "float",
+        "name": "hfi_tracking_ki"
+      },
+      {
+        "sub": 37,
+        "type": "float",
+        "name": "hfi_min_response_pu"
+      },
+      {
+        "sub": 38,
+        "type": "float",
+        "name": "hfi_lock_error"
+      },
+      {
+        "sub": 39,
+        "type": "uint32_t",
+        "name": "hfi_estimator_lock_ms"
+      },
+      {
+        "sub": 40,
+        "type": "uint32_t",
+        "name": "hfi_estimator_unlock_ms"
+      },
+      {
+        "sub": 41,
+        "type": "float",
+        "name": "hfi_pole_detect_current_pu"
+      },
+      {
+        "sub": 42,
+        "type": "float",
+        "name": "hfi_pole_min_contrast"
+      },
+      {
+        "sub": 43,
+        "type": "int16_t",
+        "name": "hfi_pole_response_polarity"
+      },
+      {
+        "sub": 44,
+        "type": "uint32_t",
+        "name": "hfi_pole_settle_ms"
+      },
+      {
+        "sub": 45,
+        "type": "uint32_t",
+        "name": "hfi_pole_measure_ms"
+      },
+      {
+        "sub": 46,
+        "type": "float",
+        "name": "smo_switching_gain"
+      },
+      {
+        "sub": 47,
+        "type": "float",
+        "name": "smo_boundary_pu"
+      },
+      {
+        "sub": 48,
+        "type": "float",
+        "name": "smo_emf_lpf_alpha"
+      },
+      {
+        "sub": 49,
+        "type": "float",
+        "name": "smo_emf_delay_comp_gain"
+      },
+      {
+        "sub": 50,
+        "type": "float",
+        "name": "smo_pll_kp"
+      },
+      {
+        "sub": 51,
+        "type": "float",
+        "name": "smo_pll_ki"
+      },
+      {
+        "sub": 52,
+        "type": "float",
+        "name": "smo_pll_speed_lpf_alpha"
+      },
+      {
+        "sub": 53,
+        "type": "float",
+        "name": "smo_weak_emf_speed_decay"
+      },
+      {
+        "sub": 54,
+        "type": "float",
+        "name": "smo_min_emf_pu"
+      },
+      {
+        "sub": 55,
+        "type": "float",
+        "name": "smo_unlock_emf_ratio"
+      },
+      {
+        "sub": 56,
+        "type": "float",
+        "name": "smo_lock_phase_error"
+      },
+      {
+        "sub": 57,
+        "type": "float",
+        "name": "smo_max_accel_e_rad_s2"
+      },
+      {
+        "sub": 58,
+        "type": "float",
+        "name": "smo_current_hat_limit_pu"
+      },
+      {
+        "sub": 59,
+        "type": "uint32_t",
+        "name": "smo_lock_ms"
+      },
+      {
+        "sub": 60,
+        "type": "uint32_t",
+        "name": "smo_unlock_ms"
+      },
+      {
+        "sub": 61,
+        "type": "uint16_t",
+        "name": "debug_mode"
+      },
+      {
+        "sub": 62,
+        "type": "uint32_t",
+        "name": "current_ramp_ms"
+      },
+      {
+        "sub": 63,
+        "type": "uint32_t",
+        "name": "if_hold_ms"
+      },
+      {
+        "sub": 64,
+        "type": "uint32_t",
+        "name": "iq_hold_ms"
+      },
+      {
+        "sub": 65,
+        "type": "uint32_t",
+        "name": "ramp_timeout_ms"
+      },
+      {
+        "sub": 66,
+        "type": "uint32_t",
+        "name": "total_timeout_ms"
+      },
+      {
+        "sub": 67,
+        "type": "uint32_t",
+        "name": "run_test_ms"
+      }
+    ],
+    "0x2f04": [
+      {
+        "sub": 1,
+        "type": "float",
+        "name": "sample_time_s"
+      },
+      {
+        "sub": 2,
+        "type": "float",
+        "name": "pole_pairs"
+      },
+      {
+        "sub": 3,
+        "type": "float",
+        "name": "speed_base_rpm"
+      },
+      {
+        "sub": 4,
+        "type": "float",
+        "name": "max_speed_rpm"
+      },
+      {
+        "sub": 5,
+        "type": "float",
+        "name": "align_angle_turns"
+      },
+      {
+        "sub": 6,
+        "type": "float",
+        "name": "align_current_pu"
+      },
+      {
+        "sub": 7,
+        "type": "float",
+        "name": "startup_iq_pu"
+      },
+      {
+        "sub": 8,
+        "type": "float",
+        "name": "iq_limit_pu"
+      },
+      {
+        "sub": 9,
+        "type": "float",
+        "name": "handoff_speed_rpm"
+      },
+      {
+        "sub": 10,
+        "type": "float",
+        "name": "sensorless_exit_speed_rpm"
+      },
+      {
+        "sub": 11,
+        "type": "float",
+        "name": "open_loop_accel_rpm_s"
+      },
+      {
+        "sub": 12,
+        "type": "float",
+        "name": "run_accel_rpm_s"
+      },
+      {
+        "sub": 13,
+        "type": "float",
+        "name": "speed_kp"
+      },
+      {
+        "sub": 14,
+        "type": "float",
+        "name": "speed_ki"
+      },
+      {
+        "sub": 15,
+        "type": "uint16_t",
+        "name": "minimum_lock_quality"
+      },
+      {
+        "sub": 16,
+        "type": "uint16_t",
+        "name": "minimum_hfi_quality"
+      },
+      {
+        "sub": 17,
+        "type": "uint16_t",
+        "name": "hfi_enable"
+      },
+      {
+        "sub": 18,
+        "type": "uint16_t",
+        "name": "allow_open_loop_fallback"
+      },
+      {
+        "sub": 19,
+        "type": "uint32_t",
+        "name": "align_cycles"
+      },
+      {
+        "sub": 20,
+        "type": "uint32_t",
+        "name": "lock_dwell_cycles"
+      },
+      {
+        "sub": 21,
+        "type": "uint32_t",
+        "name": "blend_cycles"
+      },
+      {
+        "sub": 22,
+        "type": "uint32_t",
+        "name": "lock_timeout_cycles"
+      },
+      {
+        "sub": 23,
+        "type": "uint32_t",
+        "name": "hfi_lock_dwell_cycles"
+      },
+      {
+        "sub": 24,
+        "type": "uint32_t",
+        "name": "hfi_timeout_cycles"
+      },
+      {
+        "sub": 25,
+        "type": "uint32_t",
+        "name": "unlock_dwell_cycles"
+      },
+      {
+        "sub": 26,
+        "type": "uint32_t",
+        "name": "monitor_dwell_cycles"
+      },
+      {
+        "sub": 27,
+        "type": "uint32_t",
+        "name": "fallback_ready_cycles"
+      },
+      {
+        "sub": 28,
+        "type": "uint32_t",
+        "name": "stop_dwell_cycles"
+      },
+      {
+        "sub": 29,
+        "type": "uint32_t",
+        "name": "stop_timeout_cycles"
+      },
+      {
+        "sub": 30,
+        "type": "int32_t",
+        "name": "fallback_max_angle_error_q24"
+      },
+      {
+        "sub": 31,
+        "type": "int32_t",
+        "name": "monitor_max_angle_error_q24"
+      },
+      {
+        "sub": 32,
+        "type": "int32_t",
+        "name": "monitor_max_speed_error_rpm"
+      },
+      {
+        "sub": 33,
+        "type": "int32_t",
+        "name": "stop_speed_rpm"
+      },
+      {
+        "sub": 34,
+        "type": "uint16_t",
+        "name": "debug_mode"
+      },
+      {
+        "sub": 35,
+        "type": "uint32_t",
+        "name": "current_ramp_cycles"
+      },
+      {
+        "sub": 36,
+        "type": "uint32_t",
+        "name": "if_hold_cycles"
+      },
+      {
+        "sub": 37,
+        "type": "uint32_t",
+        "name": "iq_hold_cycles"
+      },
+      {
+        "sub": 38,
+        "type": "uint32_t",
+        "name": "ramp_timeout_cycles"
+      },
+      {
+        "sub": 39,
+        "type": "uint32_t",
+        "name": "total_timeout_cycles"
+      },
+      {
+        "sub": 40,
+        "type": "uint32_t",
+        "name": "run_test_cycles"
+      }
+    ],
+    "0x2f05": [
+      {
+        "sub": 1,
+        "type": "float",
+        "name": "sample_time_s"
+      },
+      {
+        "sub": 2,
+        "type": "float",
+        "name": "stator_resistance_pu"
+      },
+      {
+        "sub": 3,
+        "type": "float",
+        "name": "current_model_gain"
+      },
+      {
+        "sub": 4,
+        "type": "float",
+        "name": "switching_gain"
+      },
+      {
+        "sub": 5,
+        "type": "float",
+        "name": "boundary_pu"
+      },
+      {
+        "sub": 6,
+        "type": "float",
+        "name": "emf_lpf_alpha"
+      },
+      {
+        "sub": 7,
+        "type": "float",
+        "name": "emf_delay_comp_gain"
+      },
+      {
+        "sub": 8,
+        "type": "float",
+        "name": "pll_kp"
+      },
+      {
+        "sub": 9,
+        "type": "float",
+        "name": "pll_ki"
+      },
+      {
+        "sub": 10,
+        "type": "float",
+        "name": "pll_speed_lpf_alpha"
+      },
+      {
+        "sub": 11,
+        "type": "float",
+        "name": "weak_emf_speed_decay"
+      },
+      {
+        "sub": 12,
+        "type": "float",
+        "name": "min_emf_pu"
+      },
+      {
+        "sub": 13,
+        "type": "float",
+        "name": "unlock_emf_ratio"
+      },
+      {
+        "sub": 14,
+        "type": "float",
+        "name": "lock_phase_error"
+      },
+      {
+        "sub": 15,
+        "type": "float",
+        "name": "max_electrical_rad_s"
+      },
+      {
+        "sub": 16,
+        "type": "float",
+        "name": "max_accel_e_rad_s2"
+      },
+      {
+        "sub": 17,
+        "type": "float",
+        "name": "current_hat_limit_pu"
+      },
+      {
+        "sub": 18,
+        "type": "uint16_t",
+        "name": "lock_cycles"
+      },
+      {
+        "sub": 19,
+        "type": "uint16_t",
+        "name": "unlock_cycles"
+      }
+    ],
+    "0x2f03": [
+      {
+        "sub": 1,
+        "type": "uint32_t",
+        "name": "recipe_id"
+      },
+      {
+        "sub": 2,
+        "type": "uint32_t",
+        "name": "recipe_revision"
+      },
+      {
+        "sub": 3,
+        "type": "float",
+        "name": "phase_rs_ohm"
+      },
+      {
+        "sub": 4,
+        "type": "float",
+        "name": "phase_ld_h"
+      },
+      {
+        "sub": 5,
+        "type": "float",
+        "name": "phase_lq_h"
+      },
+      {
+        "sub": 6,
+        "type": "float",
+        "name": "current_base_a"
+      },
+      {
+        "sub": 7,
+        "type": "float",
+        "name": "voltage_base_v"
+      },
+      {
+        "sub": 8,
+        "type": "float",
+        "name": "rated_current_a"
+      },
+      {
+        "sub": 9,
+        "type": "float",
+        "name": "current_limit_a"
+      },
+      {
+        "sub": 10,
+        "type": "float",
+        "name": "max_speed_rpm"
+      },
+      {
+        "sub": 11,
+        "type": "float",
+        "name": "current_bandwidth_hz"
+      },
+      {
+        "sub": 12,
+        "type": "uint16_t",
+        "name": "pole_pairs"
+      },
+      {
+        "sub": 13,
+        "type": "uint16_t",
+        "name": "allow_continuous_rotation"
+      }
+    ],
+    "0x2f06": [
+      {
+        "sub": 1,
+        "name": "startup_state",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 2,
+        "name": "first_fault",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 3,
+        "name": "observer_speed_rpm",
+        "type": "int32_t"
+      },
+      {
+        "sub": 4,
+        "name": "iq_feedback_pu",
+        "type": "float"
+      },
+      {
+        "sub": 5,
+        "name": "observer_locked",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 6,
+        "name": "observer_quality",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 7,
+        "name": "encoder_valid",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 8,
+        "name": "record_id",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 9,
+        "name": "frozen",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 10,
+        "name": "trace_bytes",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 11,
+        "name": "current_failure",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 12,
+        "name": "debug_completed",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 13,
+        "name": "pwm_counter",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 14,
+        "name": "source_foc_ready",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 15,
+        "name": "control_active",
+        "type": "uint32_t"
+      },
+      {
+        "sub": 16,
+        "name": "production_result",
+        "type": "uint32_t"
+      }
+    ]
+  }
+}
+

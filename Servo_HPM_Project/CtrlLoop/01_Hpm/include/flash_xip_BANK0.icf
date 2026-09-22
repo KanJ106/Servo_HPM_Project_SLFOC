@@ -94,6 +94,11 @@ initialize by copy with packing=auto        { section .text.libc.sinf};
 initialize by copy with packing=auto        { section .text.libc.cosf};
 initialize by copy with packing=auto        { section .text.libc.atanf};
 initialize by copy with packing=auto        { section .text.libc.sqrtf};
+/* First-use fetch cost measured with exact linked instruction clones.
+ * Keep control math unchanged; make these three cold paths deterministic. */
+initialize by copy with packing=auto        { section .text.ToqLoop_Calc};
+initialize by copy with packing=auto        { section .text.ipark_Calc};
+initialize by copy with packing=auto        { section .text.libc.hypotf};
 
 initialize by copy with packing=auto        { section .text.ibc.strasmops_rv};
 
@@ -116,6 +121,9 @@ place in ILM                                { section .text.libc.sinf};
 place in ILM                                { section .text.libc.cosf};
 place in ILM                                { section .text.libc.atanf};
 place in ILM                                { section .text.libc.sqrtf};
+place in ILM                                { section .text.ToqLoop_Calc};
+place in ILM                                { section .text.ipark_Calc};
+place in ILM                                { section .text.libc.hypotf};
 
 place in ILM                                { section .text.ibc.strasmops_rv};
 

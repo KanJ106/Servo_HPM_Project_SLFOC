@@ -1,5 +1,50 @@
 #include "s_encode_init.h"
 
+#if defined(SENSORLESS_CANOPEN_BUILD)
+#include "SensorlessShadow.h"
+volatile SL_ENCODER_MONITOR g_sl_encoder;
+static uint16_t encoder_request_pending;
+
+void SensorlessEncoder_Init(uint16_t type)
+{
+    SlEncoder_Init(&g_sl_encoder, type);
+    encoder_request_pending=0U;
+    memset((void *)&g_sl_encoder_timing,0,sizeof(g_sl_encoder_timing));
+    if(type!=12U && type!=13U) return;
+    EncodeSci_Main();
+    EncodeSCI_ResetFIFO;
+    g_sl_encoder.initialized=1U;
+}
+
+void SensorlessEncoder_Service1ms(uint16_t drive_active)
+{
+    uint8_t frame[11];
+    uint32_t count, i;
+    if(!g_sl_encoder.initialized) return;
+    g_sl_encoder_timing.sequence++;
+    if(encoder_request_pending) {
+        g_sl_encoder_timing.frame_request_tick=g_sl_encoder_timing.pending_request_tick;
+        g_sl_encoder_timing.frame_read_tick=g_sensorless_shadow.pwm_counter;
+        count=EncodeSCI_FIFO_NUM;
+        if(count==11U) {
+            for(i=0;i<11U;i++) frame[i]=(uint8_t)EncodeSCI_RxData;
+            SlEncoder_Sample(&g_sl_encoder,frame,11U,drive_active);
+        } else {
+            SlEncoder_Sample(&g_sl_encoder,0,count,drive_active);
+        }
+    }
+    /* Discard partial/unsolicited data; exactly one read request per service.
+     * No legacy RT_Process: it also contains calibration/zeroing commands. */
+    g_sl_encoder_timing.frame_tick_ms=g_sl_encoder.tick_ms;
+    EncodeSCI_ResetFIFO;
+    g_sl_encoder_timing.pending_request_tick=g_sensorless_shadow.pwm_counter;
+    EncodeSCI_TxData=0x6AU;
+    g_sl_encoder.requests++;
+    encoder_request_pending=1U;
+    g_sl_encoder_timing.sequence++;
+}
+#endif
+
 uint8_t  UartRxuff[22] = {0x00,0x00,0x00,0x00,0x00,0x00};
 
 #if SERVO_MCU == HPM_6E00
@@ -32,7 +77,11 @@ void EncodeSci_Main(void)
     uart_default_config(EncodeSCI, &config);
     config.baudrate = 2500000U;
     config.fifo_enable = true;
+    #if HARDWARE_VER_SEL == HARDWARE_VER_1
+    config.src_freq_in_hz = clock_get_frequency(clock_uart2);
+#else
     config.src_freq_in_hz = clock_get_frequency(clock_uart1);
+#endif
     config.rx_fifo_level = uart_fifo_16_bytes;
     config.tx_fifo_level = uart_fifo_16_bytes;
 

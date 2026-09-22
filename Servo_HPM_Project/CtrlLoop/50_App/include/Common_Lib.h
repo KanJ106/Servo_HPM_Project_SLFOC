@@ -17,14 +17,14 @@
 #define	Common_Min2(a,b)			(a<b?a:b)
 #define	Common_Min3(a,b,c)			(a<b?(a<c?a:c):(b<c?b:c))
 
-#define Common_Scheduling			(1000)                   	//1000us??Ã¨Â°?Ã¥ÂºÂ¦Ã¥?Â¨Ã¦??
-#define Common_Base_1ms				(1000/Common_Scheduling)		//1msÃ¥Â®??Â¶Ã¥?ÂºÃ¥??
-#define Common_Base_10ms			(10*Common_Base_1ms)				//10ms?ÂºÃ¥??
-#define Common_Base_100ms			(100*Common_Base_1ms)				//100ms?ÂºÃ¥??
-#define Common_Base_1000ms   		(1000*Common_Base_1ms)			//1000ms?ÂºÃ¥??
-#define Common_Base_Dot1min			(6000*Common_Base_1ms)			//0.1min?ÂºÃ¥??
-#define Common_Base_1min			(Uint32)(60000*Common_Base_1ms)	//1min?ÂºÃ¥??
-#define	Common_Base_1hour			(Uint32)(3600000*Common_Base_1ms)	//1h?ÂºÃ¥??
+#define Common_Scheduling			(1000)                   	//1000us??è°?åº¦å?¨æ??
+#define Common_Base_1ms				(1000/Common_Scheduling)		//1mså®??¶å?ºå??
+#define Common_Base_10ms			(10*Common_Base_1ms)				//10ms?ºå??
+#define Common_Base_100ms			(100*Common_Base_1ms)				//100ms?ºå??
+#define Common_Base_1000ms   		(1000*Common_Base_1ms)			//1000ms?ºå??
+#define Common_Base_Dot1min			(6000*Common_Base_1ms)			//0.1min?ºå??
+#define Common_Base_1min			(Uint32)(60000*Common_Base_1ms)	//1min?ºå??
+#define	Common_Base_1hour			(Uint32)(3600000*Common_Base_1ms)	//1h?ºå??
 #define Common_VALID				(1)
 #define Common_INVALID				(0)
 
@@ -50,12 +50,12 @@
 #define Common_BIT13				(13)
 #define Common_BIT14				(14)
 #define Common_BIT15				(15)
-#define Common_Check16Bit(x,n)		((x & (0x0001<<(n))) >> (n))	//Ã¤Â¸?-FaultÃ¯Â¼?1  -Ture
-#define Common_Check16Bit2(x,n)		((x & (0x0001<<(n)))       )	//Ã¤Â¸?-FaultÃ¯Â¼???0-Ture
-#define Common_Set16Bit(x,n)		((x |= (0x0001<<(n)))       )	//Ã¥Â¯Â¹Ã¥?Ã¤Â½?Ã§Â½?
-#define Common_Clr16Bit(x,n)		((x &= (~(0x0001<<(n))))    )	//Ã¥Â¯Â¹Ã¥?Ã¤Â½?Ã¦Â¸?0
+#define Common_Check16Bit(x,n)		((x & (0x0001<<(n))) >> (n))	//ä¸?-Faultï¼?1  -Ture
+#define Common_Check16Bit2(x,n)		((x & (0x0001<<(n)))       )	//ä¸?-Faultï¼???0-Ture
+#define Common_Set16Bit(x,n)		((x |= (0x0001<<(n)))       )	//å¯¹å?ä½?ç½?
+#define Common_Clr16Bit(x,n)		((x &= (~(0x0001<<(n))))    )	//å¯¹å?ä½?æ¸?0
 
-/**********Ã¥Â®??Â¶Ã¥???Â½Ã¥?Â½Ã¦??************/
+/**********å®??¶å???½å?½æ??************/
 typedef struct
 {
 	Uint32	CntBase;
@@ -64,31 +64,31 @@ typedef struct
 #define COMMON_DEFAULTS	{0,	0}
 
 /****************************************************************************
- * ??Ã¨Â¿Â°Ã¯?Ã¥Â®??Â¶Ã¥??Â½Ã¦?Â°Ã¯???????ms
- * Ã¥Â®??Â¶Ã¥?Â½Ã¦?Â°Ã¥?Ã¤Â¹?  MsU32CntÃ¤Â¸ÂºÃ¨Â®Â¡?Â°Ã¥?Â¨Ã¯???Ã¥Â®?Ã¤Â¹?Ã¤Â¸ÂºÃ©????????Ã¯Â¼?
- * ValueÃ¤Â¸ÂºÃ¥??Â¶Ã¥?Â¼Ã¯?,Ã¥Â®??Â¶Ã¦?Â¶Ã©?Â´Ã¥?Â°Ã¯?Ã¨Â¿???1Ã¯Â¼??Â¦Ã¥??Ã¨Â¿???0Ã¯Â¼????Â½Ã§??????
- * Common_Base:??Ã¤Â½??ÂºÃ¥??Ã¦Â¯?Ã¥Â¦?Ã¥Â®???.1sÃ¯Â¼?Common_Base=Common_Base_100ms
- * ??Ã¤Â½??ÂºÃ¥??Ã¦Â¯?Ã¥Â¦?Ã¥Â®???.01sÃ¯Â¼?Common_Base=Common_Base_10ms
+ * ??è¿°ï?å®??¶å??½æ?°ï???????ms
+ * å®??¶å?½æ?°å?ä¹?  MsU32Cntä¸ºè®¡?°å?¨ï???å®?ä¹?ä¸ºé????????ï¼?
+ * Valueä¸ºå??¶å?¼ï?,å®??¶æ?¶é?´å?°ï?è¿???1ï¼??¦å??è¿???0ï¼????½ç??????
+ * Common_Base:??ä½??ºå??æ¯?å¦?å®???.1sï¼?Common_Base=Common_Base_100ms
+ * ??ä½??ºå??æ¯?å¦?å®???.01sï¼?Common_Base=Common_Base_10ms
 ****************************************************************************/
 #define Common_DelayShort(U32Cnt,Value,Common_Base)	\
 	((U32Cnt)<(Uint32)(Value*Common_Base) ? (U32Cnt++,Common_INVALID):Common_VALID)	//0.776us
-extern void Common_DelayClear(TYPE_COMMON_CNT *CntStruct);//Ã¨Â®Â¡Ã¦?Â°Ã¥?Â¨Ã§???Ã¤Â½???Ã¥Â§???Ã¨Â°??Â¨Ã¦?Â¶Ã©??.38us
-extern Uint16  Common_DelayLong(TYPE_COMMON_CNT *CntStruct,Uint16 DelayTime,Uint32 CntBase);//min/hÃ¥Â»Â¶Ã¦?Â¶Ã¥?Â½Ã¦??Ã¨Â°??Â¨Ã¦?Â¶Ã©??.79us
+extern void Common_DelayClear(TYPE_COMMON_CNT *CntStruct);//è®¡æ?°å?¨ç???ä½???å§???è°??¨æ?¶é??.38us
+extern Uint16  Common_DelayLong(TYPE_COMMON_CNT *CntStruct,Uint16 DelayTime,Uint32 CntBase);//min/hå»¶æ?¶å?½æ??è°??¨æ?¶é??.79us
 /*****************************************************************************
- *?Â½Ã¦?Â°Ã¦??Ã¨Â¿?  Ã¯Â¼?Ã¤Â¸??Â¶Ã¦?Â¯Ã¦?Â§Ã¦Â»Â¤Ã¦Â³Â¢Ã¥?Â½Ã¦?Â°Ã¯?Uint16/Int16 ??Uint32/Int32
- *????      Ã¯Â¼???Ã§Â¬Â¦Ã¥?Â·Ã¦Â»Â¤Ã¦Â³Â¢Ã¥?Â½Ã¦?Â°Ã¨?Ã¨Â¡?Ã¦Â»Â¤Ã¦Â³Â¢
- *Ã¨Â¾???      Ã¯Â¼? in	Ã¨Â¾??Â¥Ã¥??
- *	      	old	Ã¤Â¸?Ã¤Â¸?Ã¦Â¬Â¡Ã¨??ÂºÃ¥??
- *			*remÃ¤Â¸?Ã¤Â¸?Ã¦Â¬Â¡Ã¤??Â°Ã¥?Â°Ã¥??
- *			TÃ¦Â»Â¤Ã¦Â³Â¢?Â¶Ã©??0.001s,Int32Tf=T/??Ã¯Â¼???Ã¤Â¸ÂºÃ¨?Ã¥ÂºÂ¦Ã¥?Â¨Ã¦??ms;T??Ã¤Â½?ms)
- *Ã¨Â¾???      Ã¯Â¼? out	Ã¨Â¾??ÂºÃ¥??
+ *?½æ?°æ??è¿?  ï¼?ä¸??¶æ?¯æ?§æ»¤æ³¢å?½æ?°ï?Uint16/Int16 ??Uint32/Int32
+ *????      ï¼???ç¬¦å?·æ»¤æ³¢å?½æ?°è?è¡?æ»¤æ³¢
+ *è¾???      ï¼? in	è¾??¥å??
+ *	      	old	ä¸?ä¸?æ¬¡è??ºå??
+ *			*remä¸?ä¸?æ¬¡ä??°å?°å??
+ *			Tæ»¤æ³¢?¶é??0.001s,Int32Tf=T/??ï¼???ä¸ºè?åº¦å?¨æ??ms;T??ä½?ms)
+ *è¾???      ï¼? out	è¾??ºå??
 *****************************************************************************/
-extern int16 Common_FliterInt16(int16 Int16in , int16 Int16old , int16 *Int16rem , Uint16 Int16Tf);//?Â§Ã¨?Ã¨Â°??Â¨Ã¦?Â¶Ã©??.24us
-extern Uint16 Common_FliterUint16(Uint16 U16in , Uint16 U16old , Uint16 *U16rem , Uint16 U16Tf);//?Â§Ã¨??Â¶Ã©??.54us
-extern int32 Common_InertiaFilterInt32(int32 Int32in , int32 Int32old , int32 *Int32rem , Uint16 Int32Tf);//?Â§Ã¨?Ã¨Â°??Â¨Ã¦?Â¶Ã©??.50usÃ¯Â¼????Â¿Ã¦?Â¶Ã©??.35us
+extern int16 Common_FliterInt16(int16 Int16in , int16 Int16old , int16 *Int16rem , Uint16 Int16Tf);//?§è?è°??¨æ?¶é??.24us
+extern Uint16 Common_FliterUint16(Uint16 U16in , Uint16 U16old , Uint16 *U16rem , Uint16 U16Tf);//?§è??¶é??.54us
+extern int32 Common_InertiaFilterInt32(int32 Int32in , int32 Int32old , int32 *Int32rem , Uint16 Int32Tf);//?§è?è°??¨æ?¶é??.50usï¼????¿æ?¶é??.35us
 extern Uint32 Common_InertiaFilterUint32(Uint32 Uint32in , Uint32 Uint32old , Uint32 *Uint32rem , Uint16 Uint32Tf);//????.56us,????.47us
 
-extern void Common_SeprateDataU16(Uint16 in, Uint16 *out, Uint16 num);	//????16?Â°Ã§??Ã¤Â¸ÂªÃ¥???Â¾Ã¥??Ã¤Â¸?Ã¤Â½?
+extern void Common_SeprateDataU16(Uint16 in, Uint16 *out, Uint16 num);	//????16?°ç??ä¸ªå???¾å??ä¸?ä½?
 
 #endif /* COMMON_LIB_H_ */
 //============================================================================

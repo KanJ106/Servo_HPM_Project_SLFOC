@@ -1,484 +1,237 @@
 <!DOCTYPE CrossStudio_Project_File>
 <solution Name="Servo_HPM_Project" target="20" version="2">
-  <configuration
-    Name="BANK0"
-    c_preprocessor_definitions="DEBUG"
-    gcc_debugging_level="Level 3"
-    gcc_omit_frame_pointer="Yes"
-    gcc_optimization_level="None"
-    gdb_server_allow_memory_access_during_execution="Yes"
-    gdb_server_ignore_checksum_errors="No"
-    gdb_server_register_access="General and Individual" />
-  <configuration
-    Name="BANK1"
-    c_preprocessor_definitions="NDEBUG"
-    gcc_debugging_level="None"
-    gcc_omit_frame_pointer="Yes"
-    gcc_optimization_level="Level 1" />
-  <configuration
-    Name="Common"
-    c_preprocessor_definitions="FLASH_XIP=1;HPMSOC_HAS_HPMSDK_MULTICORE=y;HPMSOC_HAS_HPMSDK_GPIO=y;HPMSOC_HAS_HPMSDK_PLIC=y;HPMSOC_HAS_HPMSDK_MCHTMR=y;HPMSOC_HAS_HPMSDK_PLICSW=y;HPMSOC_HAS_HPMSDK_GPTMR=y;HPMSOC_HAS_HPMSDK_UART=y;HPMSOC_HAS_HPMSDK_I2C=y;HPMSOC_HAS_HPMSDK_SPI=y;HPMSOC_HAS_HPMSDK_CRC=y;HPMSOC_HAS_HPMSDK_TSNS=y;HPMSOC_HAS_HPMSDK_MBX=y;HPMSOC_HAS_HPMSDK_EWDG=y;HPMSOC_HAS_HPMSDK_DMAMUX=y;HPMSOC_HAS_HPMSDK_DMAV2=y;HPMSOC_HAS_HPMSDK_PPI=y;HPMSOC_HAS_HPMSDK_GPIOM=y;HPMSOC_HAS_HPMSDK_LOBS=y;HPMSOC_HAS_HPMSDK_ADC16=y;HPMSOC_HAS_HPMSDK_ACMP=y;HPMSOC_HAS_HPMSDK_I2S=y;HPMSOC_HAS_HPMSDK_DAO=y;HPMSOC_HAS_HPMSDK_PDM=y;HPMSOC_HAS_HPMSDK_MCAN=y;HPMSOC_HAS_HPMSDK_PTPC=y;HPMSOC_HAS_HPMSDK_QEIV2=y;HPMSOC_HAS_HPMSDK_QEOV2=y;HPMSOC_HAS_HPMSDK_PWMV2=y;HPMSOC_HAS_HPMSDK_RDC=y;HPMSOC_HAS_HPMSDK_SDM=y;HPMSOC_HAS_HPMSDK_PLB=y;HPMSOC_HAS_HPMSDK_SYNT=y;HPMSOC_HAS_HPMSDK_SEI=y;HPMSOC_HAS_HPMSDK_TRGM=y;HPMSOC_HAS_HPMSDK_MTG=y;HPMSOC_HAS_HPMSDK_VSC=y;HPMSOC_HAS_HPMSDK_CLC=y;HPMSOC_HAS_HPMSDK_ENET=y;HPMSOC_HAS_HPMSDK_USB=y;HPMSOC_HAS_HPMSDK_TSW=y;HPMSOC_HAS_HPMSDK_ESC=y;HPMSOC_HAS_HPMSDK_FEMC=y;HPMSOC_HAS_HPMSDK_FFA=y;HPMSOC_HAS_HPMSDK_SDP=y;HPMSOC_HAS_HPMSDK_PSEC=y;HPMSOC_HAS_HPMSDK_PMON=y;HPMSOC_HAS_HPMSDK_RNG=y;HPMSOC_HAS_HPMSDK_KEYM=y;HPMSOC_HAS_HPMSDK_OTP=y;HPMSOC_HAS_HPMSDK_SYSCTL=y;HPMSOC_HAS_HPMSDK_IOC=y;HPMSOC_HAS_HPMSDK_PLLCTLV2=y;HPMSOC_HAS_HPMSDK_PPOR=y;HPMSOC_HAS_HPMSDK_PCFG=y;HPMSOC_HAS_HPMSDK_PDGO=y;HPMSOC_HAS_HPMSDK_PGPR=y;HPMSOC_HAS_HPMSDK_BACC=y;HPMSOC_HAS_HPMSDK_BPOR=y;HPMSOC_HAS_HPMSDK_BCFG=y;HPMSOC_HAS_HPMSDK_BGPR=y;HPMSOC_HAS_HPMSDK_BSEC=y;HPMSOC_HAS_HPMSDK_RTC=y;HPMSOC_HAS_HPMSDK_BKEY=y;HPMSOC_HAS_HPMSDK_BMON=y;HPMSOC_HAS_HPMSDK_TAMP=y;HPMSOC_HAS_HPMSDK_MONO=y;HPMSOC_HAS_HPMSDK_PMP=y;"
-    debug_cpu_registers_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\hpm_ses_riscv_cpu_regs.xml"
-    debug_register_definition_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\hpm_ses_reg.xml"
-    debug_restrict_memory_access="No"
-    gdb_server_write_timeout="300"
-    link_symbol_definitions="_heap_size=0x4000;_stack_size=0x4000;_flash_size=16M;_extram_size=32M;" />
-  <configuration
-    Name="Debug"
-    c_preprocessor_definitions="DEBUG"
-    gcc_debugging_level="Level 3"
-    gcc_omit_frame_pointer="Yes"
-    gcc_optimization_level="None" />
-  <configuration
-    Name="Release"
-    c_preprocessor_definitions="NDEBUG"
-    gcc_debugging_level="Level 2"
-    gcc_omit_frame_pointer="Yes"
-    gcc_optimization_level="Level 2 balanced" />
+  <configuration Name="BANK0" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 3" gcc_omit_frame_pointer="Yes" gcc_optimization_level="None" gdb_server_allow_memory_access_during_execution="Yes" gdb_server_ignore_checksum_errors="No" gdb_server_register_access="General and Individual" />
+  <configuration Name="BANK1" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="None" gcc_omit_frame_pointer="Yes" gcc_optimization_level="Level 1" />
+  <configuration Name="Common" c_preprocessor_definitions="FLASH_XIP=1;HPMSOC_HAS_HPMSDK_MULTICORE=y;HPMSOC_HAS_HPMSDK_GPIO=y;HPMSOC_HAS_HPMSDK_PLIC=y;HPMSOC_HAS_HPMSDK_MCHTMR=y;HPMSOC_HAS_HPMSDK_PLICSW=y;HPMSOC_HAS_HPMSDK_GPTMR=y;HPMSOC_HAS_HPMSDK_UART=y;HPMSOC_HAS_HPMSDK_I2C=y;HPMSOC_HAS_HPMSDK_SPI=y;HPMSOC_HAS_HPMSDK_CRC=y;HPMSOC_HAS_HPMSDK_TSNS=y;HPMSOC_HAS_HPMSDK_MBX=y;HPMSOC_HAS_HPMSDK_EWDG=y;HPMSOC_HAS_HPMSDK_DMAMUX=y;HPMSOC_HAS_HPMSDK_DMAV2=y;HPMSOC_HAS_HPMSDK_PPI=y;HPMSOC_HAS_HPMSDK_GPIOM=y;HPMSOC_HAS_HPMSDK_LOBS=y;HPMSOC_HAS_HPMSDK_ADC16=y;HPMSOC_HAS_HPMSDK_ACMP=y;HPMSOC_HAS_HPMSDK_I2S=y;HPMSOC_HAS_HPMSDK_DAO=y;HPMSOC_HAS_HPMSDK_PDM=y;HPMSOC_HAS_HPMSDK_MCAN=y;HPMSOC_HAS_HPMSDK_PTPC=y;HPMSOC_HAS_HPMSDK_QEIV2=y;HPMSOC_HAS_HPMSDK_QEOV2=y;HPMSOC_HAS_HPMSDK_PWMV2=y;HPMSOC_HAS_HPMSDK_RDC=y;HPMSOC_HAS_HPMSDK_SDM=y;HPMSOC_HAS_HPMSDK_PLB=y;HPMSOC_HAS_HPMSDK_SYNT=y;HPMSOC_HAS_HPMSDK_SEI=y;HPMSOC_HAS_HPMSDK_TRGM=y;HPMSOC_HAS_HPMSDK_MTG=y;HPMSOC_HAS_HPMSDK_VSC=y;HPMSOC_HAS_HPMSDK_CLC=y;HPMSOC_HAS_HPMSDK_ENET=y;HPMSOC_HAS_HPMSDK_USB=y;HPMSOC_HAS_HPMSDK_TSW=y;HPMSOC_HAS_HPMSDK_ESC=y;HPMSOC_HAS_HPMSDK_FEMC=y;HPMSOC_HAS_HPMSDK_FFA=y;HPMSOC_HAS_HPMSDK_SDP=y;HPMSOC_HAS_HPMSDK_PSEC=y;HPMSOC_HAS_HPMSDK_PMON=y;HPMSOC_HAS_HPMSDK_RNG=y;HPMSOC_HAS_HPMSDK_KEYM=y;HPMSOC_HAS_HPMSDK_OTP=y;HPMSOC_HAS_HPMSDK_SYSCTL=y;HPMSOC_HAS_HPMSDK_IOC=y;HPMSOC_HAS_HPMSDK_PLLCTLV2=y;HPMSOC_HAS_HPMSDK_PPOR=y;HPMSOC_HAS_HPMSDK_PCFG=y;HPMSOC_HAS_HPMSDK_PDGO=y;HPMSOC_HAS_HPMSDK_PGPR=y;HPMSOC_HAS_HPMSDK_BACC=y;HPMSOC_HAS_HPMSDK_BPOR=y;HPMSOC_HAS_HPMSDK_BCFG=y;HPMSOC_HAS_HPMSDK_BGPR=y;HPMSOC_HAS_HPMSDK_BSEC=y;HPMSOC_HAS_HPMSDK_RTC=y;HPMSOC_HAS_HPMSDK_BKEY=y;HPMSOC_HAS_HPMSDK_BMON=y;HPMSOC_HAS_HPMSDK_TAMP=y;HPMSOC_HAS_HPMSDK_MONO=y;HPMSOC_HAS_HPMSDK_PMP=y;" debug_cpu_registers_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\hpm_ses_riscv_cpu_regs.xml" debug_register_definition_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\hpm_ses_reg.xml" debug_restrict_memory_access="No" gdb_server_write_timeout="300" link_symbol_definitions="_heap_size=0x4000;_stack_size=0x4000;_flash_size=16M;_extram_size=32M;" />
+  <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 3" gcc_omit_frame_pointer="Yes" gcc_optimization_level="None" />
+  <configuration Name="Release" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="Level 2" gcc_omit_frame_pointer="Yes" gcc_optimization_level="Level 2 balanced" />
   <project Name="Servo_hpm6e00_Core0">
-    <configuration
-      Name="BANK0"
-      build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0"
-      build_output_file_name="$(OutDir)/Servo_Bank0$(EXE)"
-      c_preprocessor_definitions="_FOE_LDRPRM_BANK0_"
-      compilation_database_file="$(OutDir)/compile_commands.json"
-      debug_target_connection="J-Link"
-      gcc_debugging_level="None"
-      gcc_optimization_level="Level 1"
-      generate_compilation_database_file="Yes"
-      link_linker_script_file="..\..\CtrlLoop\01_Hpm\include\flash_xip_BANK0.icf"
-      post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/Servo_Bank0$(EXE)&quot; &gt; &quot;$(OutDir)/Servo_Bank0.asm&quot;"
-      target_interface_type="JTAG"
-      target_loader_erase_all="Yes" />
-    <configuration
-      Name="BANK1"
-      arm_assembler_variant="SEGGER"
-      build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0"
-      build_output_file_name="$(OutDir)/ECATFW__B1_FoE$(EXE)"
-      c_preprocessor_definitions="_FOE_LDRPRM_BANK1_"
-      debug_target_connection="J-Link"
-      link_linker_script_file="..\..\CtrlLoop\01_Hpm\include\flash_xip_BANK1.icf"
-      post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/ECATFW__B1_FoE$(EXE)&quot; &gt; &quot;$(OutDir)/ECATFW__B1_FoE.asm&quot;" />
-    <configuration
-      LIBRARY_IO_TYPE="STD"
-      Name="Common"
-      RISCV_TOOLCHAIN_VARIANT="Standard"
-      arm_assembler_variant="SEGGER"
-      arm_compiler_variant="gcc"
-      arm_linker_heap_size="0x4000"
-      arm_linker_no_warn_on_mismatch="Yes"
-      arm_linker_stack_size="0x4000"
-      arm_linker_variant="SEGGER"
-      arm_rtl_variant="SEGGER"
-      build_generic_options_file_name=""
-      build_intermediate_directory="$(ProjectDir)/Output/Debug/Obj/Servo_hpm6e00_Core0"
-      build_output_file_name="$(OutDir)/demo$(EXE)"
-      c_additional_options="-Wall;-Wundef;-Wno-format;-fomit-frame-pointer;-fno-builtin;-ffunction-sections;-fdata-sections;-g"
-      c_user_include_directories="../../hpm_sdk_localized_for_hpm6e00evk/arch;../../hpm_sdk_localized_for_hpm6e00evk/arch/riscv/l1c;../../hpm_sdk_localized_for_hpm6e00evk/boards/hpm6e00evk;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/ip;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/boot;../../hpm_sdk_localized_for_hpm6e00evk/drivers/inc;../../hpm_sdk_localized_for_hpm6e00evk/utils;../../hpm_sdk_localized_for_hpm6e00evk/components/debug_console;../../hpm_sdk_localized_for_hpm6e00evk/components/spi;../../hpm_sdk_localized_for_hpm6e00evk/components/nor_flash;../../CtrlLoop/60_User/include;../../CtrlLoop/21_EcatHw/include;../../CtrlLoop/20_HardWare/include;../../CtrlLoop/22_CanOpenHw/include;../../CtrlLoop/30_Drive/include;../../CtrlLoop/31_TorCtrLp/include;../../CtrlLoop/40_EtherCat/include;../../CtrlLoop/41_Modbus/include;../../CtrlLoop/42_Can/include;../../CtrlLoop/50_App/include;../../CtrlLoop/01_Hpm/include;../../CtrlLoop/10_Common/include;../../CtrlLoop/32_MitCtrLP/include;../../CtrlLoop/43_CanOpen/include/port;../../CtrlLoop/43_CanOpen/include/301;../../CtrlLoop/43_CanOpen/include/extra;../../CtrlLoop/43_CanOpen/include/app;../build_tmp/generated/include;../../CtrlLoop/90_Debug/RTT;../../CtrlLoop/90_Debug/EasyLog;../../CtrlLoop/90_Debug/Common"
-      debug_target_connection="GDB Server"
-      file_codec="UTF-8"
-      gcc_all_warnings_command_line_options="-Wall;-Wextra;-Wno-format"
-      gcc_cplusplus_language_standard="c++11"
-      gcc_enable_all_warnings="Yes"
-      gcc_fast_math="No"
-      gdb_server_autostart_server="Yes"
-      gdb_server_command_line="F:/SDK_1.9.0/sdk_env_v1.9.0/tools/openocd/openocd.exe -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/probes/ft2232.cfg -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/soc/hpm6e80-dual-core.cfg -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/boards/hpm6e00evk.cfg"
-      gdb_server_port="3333"
-      gdb_server_reset_command="reset halt"
-      gdb_server_type="Custom"
-      heap_size="0x4000"
-      libcxx="Yes"
-      link_linker_script_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\toolchains\segger\flash_xip.icf"
-      link_use_linker_script_file="Yes"
-      linker_output_format="bin"
-      linker_printf_fmt_level="int"
-      linker_printf_fp_enabled="Float"
-      linker_printf_wchar_enabled="No"
-      linker_printf_width_precision_supported="Yes"
-      linker_scanf_character_group_matching_enabled="No"
-      linker_scanf_fmt_level="int"
-      linker_scanf_fp_enabled="No"
-      post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/demo$(EXE)&quot; &gt; &quot;$(OutDir)/demo.asm&quot;"
-      project_directory=""
-      project_type="Executable"
-      rv_abi="ilp32"
-      rv_arch_ext=""
-      rv_arch_zba="Yes"
-      rv_arch_zbb="Yes"
-      rv_arch_zbc="Yes"
-      rv_arch_zbs="Yes"
-      rv_arch_zicsr="Yes"
-      rv_arch_zifencei="Yes"
-      rv_architecture="rv32imac"
-      rv_debug_extensions="None"
-      rv_toolchain_prefix=""
-      stack_size="0x4000"
-      target_device_name="HPM6E80xVMx" />
+    <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0" build_output_file_name="$(OutDir)/Servo_Bank0$(EXE)" c_preprocessor_definitions="_FOE_LDRPRM_BANK0_" compilation_database_file="$(OutDir)/compile_commands.json" debug_target_connection="J-Link" gcc_debugging_level="Level 3" gcc_optimization_level="Level 1" generate_compilation_database_file="Yes" link_linker_script_file="..\..\CtrlLoop\01_Hpm\include\flash_xip_BANK0.icf" post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/Servo_Bank0$(EXE)&quot; &gt; &quot;$(OutDir)/Servo_Bank0.asm&quot;" target_interface_type="JTAG" target_loader_erase_all="Yes" />
+    <configuration Name="BANK1" arm_assembler_variant="SEGGER" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0" build_output_file_name="$(OutDir)/ECATFW__B1_FoE$(EXE)" c_preprocessor_definitions="_FOE_LDRPRM_BANK1_" debug_target_connection="J-Link" link_linker_script_file="..\..\CtrlLoop\01_Hpm\include\flash_xip_BANK1.icf" post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/ECATFW__B1_FoE$(EXE)&quot; &gt; &quot;$(OutDir)/ECATFW__B1_FoE.asm&quot;" />
+    <configuration LIBRARY_IO_TYPE="STD" Name="Common" RISCV_TOOLCHAIN_VARIANT="Standard" arm_assembler_variant="SEGGER" arm_compiler_variant="gcc" arm_linker_heap_size="0x4000" arm_linker_no_warn_on_mismatch="Yes" arm_linker_stack_size="0x4000" arm_linker_variant="SEGGER" arm_rtl_variant="SEGGER" build_generic_options_file_name="" build_intermediate_directory="$(ProjectDir)/Output/Debug/Obj/Servo_hpm6e00_Core0" build_output_file_name="$(OutDir)/demo$(EXE)" c_additional_options="-Wall;-Wundef;-Wno-format;-fomit-frame-pointer;-fno-builtin;-ffunction-sections;-fdata-sections;-g" c_user_include_directories="../../hpm_sdk_localized_for_hpm6e00evk/arch;../../hpm_sdk_localized_for_hpm6e00evk/arch/riscv/l1c;../../hpm_sdk_localized_for_hpm6e00evk/boards/hpm6e00evk;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/ip;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains;../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/boot;../../hpm_sdk_localized_for_hpm6e00evk/drivers/inc;../../hpm_sdk_localized_for_hpm6e00evk/utils;../../hpm_sdk_localized_for_hpm6e00evk/components/debug_console;../../hpm_sdk_localized_for_hpm6e00evk/components/spi;../../hpm_sdk_localized_for_hpm6e00evk/components/nor_flash;../../CtrlLoop/60_User/include;../../CtrlLoop/21_EcatHw/include;../../CtrlLoop/20_HardWare/include;../../CtrlLoop/22_CanOpenHw/include;../../CtrlLoop/30_Drive/include;../../CtrlLoop/31_TorCtrLp/include;../../CtrlLoop/40_EtherCat/include;../../CtrlLoop/41_Modbus/include;../../CtrlLoop/42_Can/include;../../CtrlLoop/50_App/include;../../CtrlLoop/01_Hpm/include;../../CtrlLoop/10_Common/include;../../CtrlLoop/32_MitCtrLP/include;../../CtrlLoop/43_CanOpen/include/port;../../CtrlLoop/43_CanOpen/include/301;../../CtrlLoop/43_CanOpen/include/extra;../../CtrlLoop/43_CanOpen/include/app;../build_tmp/generated/include;../../CtrlLoop/90_Debug/RTT;../../CtrlLoop/90_Debug/EasyLog;../../CtrlLoop/90_Debug/Common;../../CtrlLoop/33_Sensorless/include" debug_target_connection="GDB Server" file_codec="UTF-8" gcc_all_warnings_command_line_options="-Wall;-Wextra;-Wno-format" gcc_cplusplus_language_standard="c++11" gcc_enable_all_warnings="Yes" gcc_fast_math="No" gdb_server_autostart_server="Yes" gdb_server_command_line="F:/SDK_1.9.0/sdk_env_v1.9.0/tools/openocd/openocd.exe -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/probes/ft2232.cfg -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/soc/hpm6e80-dual-core.cfg -f $(ProjectDir)/../../hpm_sdk_localized_for_hpm6e00evk/boards/openocd/boards/hpm6e00evk.cfg" gdb_server_port="3333" gdb_server_reset_command="reset halt" gdb_server_type="Custom" heap_size="0x4000" libcxx="Yes" link_linker_script_file="..\..\hpm_sdk_localized_for_hpm6e00evk\soc\HPM6E00\HPM6E80\toolchains\segger\flash_xip.icf" link_use_linker_script_file="Yes" linker_output_format="bin" linker_printf_fmt_level="int" linker_printf_fp_enabled="Float" linker_printf_wchar_enabled="No" linker_printf_width_precision_supported="Yes" linker_scanf_character_group_matching_enabled="No" linker_scanf_fmt_level="int" linker_scanf_fp_enabled="No" post_build_command="&quot;$(OBJDUMP)&quot; -S -d &quot;$(OutDir)/demo$(EXE)&quot; &gt; &quot;$(OutDir)/demo.asm&quot;" project_directory="" project_type="Executable" rv_abi="ilp32" rv_arch_ext="" rv_arch_zba="Yes" rv_arch_zbb="Yes" rv_arch_zbc="Yes" rv_arch_zbs="Yes" rv_arch_zicsr="Yes" rv_arch_zifencei="Yes" rv_architecture="rv32imac" rv_debug_extensions="None" rv_toolchain_prefix="" stack_size="0x4000" target_device_name="HPM6E80xVMx" c_preprocessor_definitions="SENSORLESS_CANOPEN_BUILD=1" />
     <folder Name="00_arch">
       <folder Name="riscv">
         <folder Name="l1c">
-          <configuration
-            Name="Common"
-            build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/arch/riscv/l1c" />
+          <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/arch/riscv/l1c" />
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/arch/riscv/l1c/hpm_l1c_drv.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/hpm_l1c_drv.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_l1c_drv.c$(OBJ)" />
           </file>
         </folder>
       </folder>
     </folder>
     <folder Name="00_boards">
       <folder Name="hpm6e00evk">
-        <configuration
-          Name="Common"
-          build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/boards/hpm6e00evk" />
+        <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/boards/hpm6e00evk" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/boards/hpm6e00evk/board.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/board.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/board.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/boards/hpm6e00evk/pinmux.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/pinmux.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/pinmux.c$(OBJ)" />
         </file>
       </folder>
     </folder>
     <folder Name="00_components">
       <folder Name="debug_console">
-        <configuration
-          Name="Common"
-          build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/components/debug_console" />
+        <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/components/debug_console" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/components/debug_console/hpm_debug_console.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_debug_console.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_debug_console.c$(OBJ)" />
         </file>
       </folder>
       <folder Name="nor_flash">
-        <configuration
-          Name="BANK0"
-          build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/components" />
-        <configuration
-          Name="BANK1"
-          build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/components" />
+        <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/components" />
+        <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/components" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/components/nor_flash/hpm_nor_flash.c" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/components/nor_flash/hpm_nor_flash.h" />
       </folder>
       <folder Name="spi">
-        <configuration
-          Name="BANK0"
-          build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/components" />
-        <configuration
-          Name="BANK1"
-          build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/components" />
+        <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/components" />
+        <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/components" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/components/spi/hpm_spi.c" />
       </folder>
     </folder>
     <folder Name="00_drivers">
       <folder Name="src">
-        <configuration
-          Name="Common"
-          build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/drivers/src" />
+        <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/drivers/src" />
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_acmp_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_acmp_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_acmp_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_adc16_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_adc16_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_adc16_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_clc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_clc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_clc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_crc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_crc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_crc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_dao_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_dao_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_dao_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_dmav2_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_dmav2_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_dmav2_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_enc_pos_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_enc_pos_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_enc_pos_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_enet_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_enet_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_enet_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_esc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_esc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_esc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_ewdg_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_ewdg_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_ewdg_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_femc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_femc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_femc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_ffa_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_ffa_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_ffa_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_gpio_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_gpio_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_gpio_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_gptmr_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_gptmr_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_gptmr_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_i2c_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_i2c_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_i2c_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_i2s_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_i2s_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_i2s_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_lobs_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_lobs_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_lobs_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_mcan_drv.c">
-          <configuration
-            Name="BANK0"
-            default_code_section=".ramfunctiontext" />
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_mcan_drv.c$(OBJ)" />
+          <configuration Name="BANK0" default_code_section=".ramfunctiontext" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_mcan_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_mchtmr_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_mchtmr_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_mchtmr_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_mtg_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_mtg_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_mtg_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_pcfg_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_pcfg_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_pcfg_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_pdm_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_pdm_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_pdm_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_plb_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_plb_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_plb_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_pllctlv2_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_pllctlv2_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_pllctlv2_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_pmp_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_pmp_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_pmp_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_ppi_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_ppi_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_ppi_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_ptpc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_ptpc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_ptpc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_pwmv2_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_pwmv2_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_pwmv2_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_qeiv2_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_qeiv2_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_qeiv2_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_qeov2_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_qeov2_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_qeov2_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_rdc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_rdc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_rdc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_rng_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_rng_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_rng_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_rtc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_rtc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_rtc_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_sdm_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_sdm_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_sdm_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_sdp_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_sdp_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_sdp_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_sei_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_sei_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_sei_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_spi_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_spi_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_spi_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_tamp_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_tamp_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_tamp_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_tsns_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_tsns_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_tsns_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_tsw_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_tsw_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_tsw_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_uart_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_uart_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_uart_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_usb_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_usb_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_usb_drv.c$(OBJ)" />
         </file>
         <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/drivers/src/hpm_vsc_drv.c">
-          <configuration
-            Name="Common"
-            build_object_file_name="$(IntDir)/hpm_vsc_drv.c$(OBJ)" />
+          <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_vsc_drv.c$(OBJ)" />
         </file>
       </folder>
     </folder>
     <folder Name="00_soc">
       <folder Name="HPM6E00">
         <folder Name="HPM6E80">
-          <configuration
-            Name="Common"
-            build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80" />
+          <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80" />
           <folder Name="boot">
-            <configuration
-              Name="Common"
-              build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/boot" />
+            <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/boot" />
             <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/boot/hpm_bootheader.c">
               <configuration Name="BANK1" build_exclude_from_build="Yes" />
-              <configuration
-                Name="Common"
-                build_object_file_name="$(IntDir)/hpm_bootheader.c$(OBJ)" />
+              <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_bootheader.c$(OBJ)" />
             </file>
           </folder>
           <folder Name="toolchains">
-            <configuration
-              Name="Common"
-              build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/toolchains" />
+            <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/toolchains" />
             <folder Name="segger">
-              <configuration
-                Name="Common"
-                build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/toolchains/segger" />
+              <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/soc/HPM6E00/HPM6E80/toolchains/segger" />
               <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains/segger/flash_xip.icf" />
               <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains/segger/startup.s">
-                <configuration
-                  Name="Common"
-                  build_object_file_name="$(IntDir)/startup.s$(OBJ)" />
+                <configuration Name="Common" build_object_file_name="$(IntDir)/startup.s$(OBJ)" />
               </file>
             </folder>
             <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains/reset.c">
-              <configuration
-                Name="Common"
-                build_object_file_name="$(IntDir)/reset.c$(OBJ)" />
+              <configuration Name="Common" build_object_file_name="$(IntDir)/reset.c$(OBJ)" />
             </file>
             <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/toolchains/trap.c">
-              <configuration
-                Name="Common"
-                build_object_file_name="$(IntDir)/trap.c$(OBJ)" />
+              <configuration Name="Common" build_object_file_name="$(IntDir)/trap.c$(OBJ)" />
             </file>
           </folder>
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/hpm_clock_drv.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/hpm_clock_drv.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_clock_drv.c$(OBJ)" />
           </file>
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/hpm_otp_drv.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/hpm_otp_drv.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_otp_drv.c$(OBJ)" />
           </file>
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/hpm_sysctl_drv.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/hpm_sysctl_drv.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_sysctl_drv.c$(OBJ)" />
           </file>
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/hpm_trgm_soc_drv.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/hpm_trgm_soc_drv.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/hpm_trgm_soc_drv.c$(OBJ)" />
           </file>
           <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/soc/HPM6E00/HPM6E80/system.c">
-            <configuration
-              Name="Common"
-              build_object_file_name="$(IntDir)/system.c$(OBJ)" />
+            <configuration Name="Common" build_object_file_name="$(IntDir)/system.c$(OBJ)" />
           </file>
         </folder>
       </folder>
     </folder>
     <folder Name="00_utils">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/utils" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/utils" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/utils" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/utils" />
       <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/utils/hpm_crc32.c" />
       <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/utils/hpm_crc32.h" />
       <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/utils/hpm_ffssi.c" />
@@ -487,17 +240,9 @@
       <file file_name="../../hpm_sdk_localized_for_hpm6e00evk/utils/hpm_swap.h" />
     </folder>
     <folder Name="01_Hpm">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/01_Hpm" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/01_Hpm" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 0" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/01_Hpm" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/01_Hpm" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 0" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/01_Hpm/include/Flash_Eeprom.h" />
         <file file_name="../../CtrlLoop/01_Hpm/include/flash_xip_BANK0.icf">
@@ -514,17 +259,9 @@
       </folder>
     </folder>
     <folder Name="10_Common">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/10_Common" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/10_Common" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/10_Common" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/10_Common" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/10_Common/include/IQmathLib.h" />
         <file file_name="../../CtrlLoop/10_Common/include/SV_DataBase.h" />
@@ -534,18 +271,9 @@
       </folder>
     </folder>
     <folder Name="20_HardWare">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/20_HardWare"
-        gcc_optimization_level="Level 0" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/20_HardWare" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 0" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/20_HardWare" gcc_optimization_level="Level 0" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/20_HardWare" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 0" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/20_HardWare/include/MCU_Fw.h" />
         <file file_name="../../CtrlLoop/20_HardWare/include/s_analog_init.h" />
@@ -561,10 +289,7 @@
       <folder Name="soure">
         <file file_name="../../CtrlLoop/20_HardWare/soure/s_analog_init.c">
           <configuration Name="BANK0" gcc_optimization_level="Level 0" />
-          <configuration
-            Name="Common"
-            default_code_section=".text"
-            default_const_section=".rodata" />
+          <configuration Name="Common" default_code_section=".text" default_const_section=".rodata" />
         </file>
         <file file_name="../../CtrlLoop/20_HardWare/soure/s_comm_init.c" />
         <file file_name="../../CtrlLoop/20_HardWare/soure/s_encode_init.c" />
@@ -577,18 +302,9 @@
       </folder>
     </folder>
     <folder Name="21_EcatHw">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/21_EcatHw"
-        gcc_optimization_level="None" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/21_EcatHw"
-        gcc_optimization_level="None" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/21_EcatHw" gcc_optimization_level="None" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/21_EcatHw" gcc_optimization_level="None" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/21_EcatHw/include/ecat_escinit.h" />
         <file file_name="../../CtrlLoop/21_EcatHw/include/hpm_ecat_phy.h" />
@@ -611,18 +327,9 @@
       </folder>
     </folder>
     <folder Name="30_Drive">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="../../CtrlLoop/70_Obj/30_Drive"
-        default_code_section=".ramfunctiontext" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="../../CtrlLoop/70_Obj/30_Drive" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK0" build_intermediate_directory="../../CtrlLoop/70_Obj/30_Drive" default_code_section=".ramfunctiontext" />
+      <configuration Name="BANK1" build_intermediate_directory="../../CtrlLoop/70_Obj/30_Drive" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/30_Drive/include/AdRead.h" />
         <file file_name="../../CtrlLoop/30_Drive/include/Cur_Clark.h" />
@@ -680,23 +387,47 @@
         <configuration Name="BANK0" build_exclude_from_build="No" />
         <configuration Name="BANK1" build_exclude_from_build="No" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/AdRead.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Clark.o" />
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Clark.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_DeadCps.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_DisturbObser.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Etheta.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_FrictionTorqCps.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IdPiReg.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IdRef.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Ipark.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IqPiReg.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IqRef.o" />
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IdPiReg.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IdRef.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Ipark.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IqPiReg.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_IqRef.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Monitor.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_MotPaLearn.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_NotchFilter.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Park.o" />
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Park.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_PiGainAdpt.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_PwmDrv.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Svpwm.o" />
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_Svpwm.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Cur_UdFwd.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/Drive_GlobalVariableDefs.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/DrvCoeff.o" />
@@ -728,7 +459,10 @@
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/SpdFb.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/SpdLoop.o" />
         <file file_name="../../CtrlLoop/70_Obj/30_Drive/SpdResponseTest.o" />
-        <file file_name="../../CtrlLoop/70_Obj/30_Drive/ToqLoop.o" />
+        <file file_name="../../CtrlLoop/70_Obj/30_Drive/ToqLoop.o">
+          <configuration Name="BANK0" build_exclude_from_build="Yes" />
+          <configuration Name="BANK1" build_exclude_from_build="Yes" />
+        </file>
       </folder>
       <folder Name="soure">
         <configuration Name="BANK0" build_exclude_from_build="Yes" />
@@ -768,9 +502,7 @@
         <file file_name="../../CtrlLoop/30_Drive/source/Pos_Reg.c" />
         <file file_name="../../CtrlLoop/30_Drive/source/Pos_Smooth.c" />
         <file file_name="../../CtrlLoop/30_Drive/source/PosFb.c">
-          <configuration
-            Name="BANK0"
-            gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="BANK0" gcc_optimization_level="Level 2 balanced" />
         </file>
         <file file_name="../../CtrlLoop/30_Drive/source/PosGenerator.c" />
         <file file_name="../../CtrlLoop/30_Drive/source/PosLoop.c" />
@@ -790,10 +522,7 @@
       </folder>
     </folder>
     <folder Name="31_TorCtrLp">
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/31_TorCtrLp/include/s_tsensor_init.h" />
         <file file_name="../../CtrlLoop/31_TorCtrLp/include/TorClosedCtrLoop.h" />
@@ -815,18 +544,9 @@
       </folder>
     </folder>
     <folder Name="40_EtherCat">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="../../CtrlLoop/70_Obj/40_EtherCat"
-        default_const_section=".rodata" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="../../CtrlLoop/70_Obj/40_EtherCat" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK0" build_intermediate_directory="../../CtrlLoop/70_Obj/40_EtherCat" default_const_section=".rodata" />
+      <configuration Name="BANK1" build_intermediate_directory="../../CtrlLoop/70_Obj/40_EtherCat" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/40_EtherCat/include/applInterface.h" />
         <file file_name="../../CtrlLoop/40_EtherCat/include/bootmode.h" />
@@ -912,26 +632,16 @@
         <file file_name="../../CtrlLoop/40_EtherCat/source/foeappl.c" />
         <file file_name="../../CtrlLoop/40_EtherCat/source/mailbox.c" />
         <file file_name="../../CtrlLoop/40_EtherCat/source/objdef.c">
-          <configuration
-            Name="BANK0"
-            gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="BANK0" gcc_optimization_level="Level 2 balanced" />
         </file>
         <file file_name="../../CtrlLoop/40_EtherCat/source/sdoserv.c" />
         <file file_name="../../CtrlLoop/40_EtherCat/source/SV_FuncCodeObj.c" />
       </folder>
     </folder>
     <folder Name="41_Modbus">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/41_Modbus" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/41_Modbus" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/41_Modbus" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/41_Modbus" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/41_Modbus/include/SV_ModbusConTrolVar.h" />
         <file file_name="../../CtrlLoop/41_Modbus/include/SV_ModbusFirm.h" />
@@ -944,17 +654,9 @@
       </folder>
     </folder>
     <folder Name="42_CanBus">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/42_Canbus"
-        gcc_optimization_level="Level 2 balanced" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/42_Canbus" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/42_Canbus" gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/42_Canbus" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/42_Can/include/r_can_api.h" />
         <file file_name="../../CtrlLoop/42_Can/include/SV_CanbusCtrl.h" />
@@ -1035,17 +737,9 @@
       </folder>
     </folder>
     <folder Name="50_App">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/50_App" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/50_App" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata"
-        gcc_optimization_level="Level 2 balanced" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/50_App" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/50_App" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
       <folder Name="include">
         <file file_name="../../CtrlLoop/50_App/include/Common_Lib.h">
           <configuration Name="Common" file_codec="GB2312" />
@@ -1101,9 +795,7 @@
         <file file_name="../../CtrlLoop/50_App/source/SV_FunCodeAttrLit.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_FuncVar.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_I2c.c">
-          <configuration
-            Name="BANK0"
-            gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="BANK0" gcc_optimization_level="Level 2 balanced" />
         </file>
         <file file_name="../../CtrlLoop/50_App/source/SV_IncEncode.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_KingKongEnc.c" />
@@ -1113,12 +805,8 @@
         <file file_name="../../CtrlLoop/50_App/source/SV_OLProtect.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_OTProtect.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_PanelCtl.c">
-          <configuration
-            Name="BANK1"
-            gcc_optimization_level="Level 2 balanced" />
-          <configuration
-            Name="Common"
-            gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="BANK1" gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="Common" gcc_optimization_level="Level 2 balanced" />
         </file>
         <file file_name="../../CtrlLoop/50_App/source/SV_RtT036.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_RunTime.c" />
@@ -1132,25 +820,16 @@
         <file file_name="../../CtrlLoop/50_App/source/SV_Sweep.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_Temperctl.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_Timer.c">
-          <configuration
-            Name="BANK1"
-            gcc_optimization_level="Level 2 balanced" />
+          <configuration Name="BANK1" gcc_optimization_level="Level 2 balanced" />
         </file>
         <file file_name="../../CtrlLoop/50_App/source/SV_UdcCtrl.c" />
         <file file_name="../../CtrlLoop/50_App/source/SV_UVWShortProtect.c" />
       </folder>
     </folder>
     <folder Name="60_User">
-      <configuration
-        Name="BANK0"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/60_User" />
-      <configuration
-        Name="BANK1"
-        build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/60_User" />
-      <configuration
-        Name="Common"
-        default_code_section=".ramfunctiontext"
-        default_const_section=".rodata" />
+      <configuration Name="BANK0" build_intermediate_directory="$(ProjectDir)/Output/BANK0/Obj/Servo_hpm6e00_Core0/60_User" />
+      <configuration Name="BANK1" build_intermediate_directory="$(ProjectDir)/Output/BANK1/Obj/Servo_hpm6e00_Core0/60_User" />
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" />
       <folder Name="include">
         <configuration Name="BANK0" build_exclude_from_build="No" />
         <file file_name="../../CtrlLoop/60_User/include/CtrLoop.h" />
@@ -1160,9 +839,7 @@
         <file file_name="../../CtrlLoop/60_User/include/Version.h" />
       </folder>
       <folder Name="soure">
-        <configuration
-          Name="Common"
-          build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/application/src" />
+        <configuration Name="Common" build_intermediate_directory="Output/$(Configuration)/Obj/$(ProjectName)/application/src" />
         <file file_name="../../CtrlLoop/60_User/soure/CtrLoop.c" />
         <file file_name="../../CtrlLoop/60_User/soure/Hpm_ISR.c" />
         <file file_name="../../CtrlLoop/60_User/soure/main.c" />
@@ -1185,6 +862,50 @@
       <file file_name="../../CtrlLoop/90_Debug/RTT/segger_rtt_interface.c" />
       <file file_name="../../CtrlLoop/90_Debug/RTT/SEGGER_RTT_printf.c" />
       <file file_name="../../CtrlLoop/90_Debug/RTT/SEGGER_RTT_Syscalls_GCC.c" />
+    </folder>
+    <folder Name="30_SourceFoc">
+      <file file_name="../../CtrlLoop/30_Drive/source/ToqLoop.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_Clark.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_Park.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_Ipark.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_IdPiReg.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_IqPiReg.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_IdRef.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_IqRef.c" />
+      <file file_name="../../CtrlLoop/30_Drive/source/Cur_Svpwm.c" />
+      <file file_name="../../CtrlLoop/33_Sensorless/source/SourceFoc.c" />
+      <file file_name="../../CtrlLoop/33_Sensorless/include/SourceFoc.h" />
+      <file file_name="../../CtrlLoop/33_Sensorless/source/ProductionMetrics.c" />
+      <file file_name="../../CtrlLoop/33_Sensorless/include/ProductionMetrics.h" />
+    </folder>
+    <folder Name="33_Sensorless">
+      <configuration Name="Common" default_code_section=".ramfunctiontext" default_const_section=".rodata" gcc_optimization_level="Level 2 balanced" />
+      <folder Name="include">
+        <file file_name="../../CtrlLoop/33_Sensorless/include/HfiEstimator.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/MotorParamIdentification.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/MotorParamProfile.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/RotorFeedback.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/SensorlessConfig.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/SensorlessProduction.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/SensorlessShadow.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/SensorlessStartup.h" />
+        <file file_name="../../CtrlLoop/33_Sensorless/include/SmoPll.h" />
+      </folder>
+      <folder Name="source">
+        <file file_name="../../CtrlLoop/33_Sensorless/source/HfiEstimator.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/MotorParamIdentification.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/MotorParamProfile.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/RotorFeedback.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessProduction.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessSafety.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessShadow.c" />
+         <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessStartup.c" />
+         <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessTakeoverProbe.c" />
+        <file file_name="../../CtrlLoop/33_Sensorless/source/SmoPll.c" />
+      </folder>
+      <file file_name="../../CtrlLoop/33_Sensorless/include/SensorlessCanopen.h" />
+      <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessCanopen.c" />
+      <file file_name="../../CtrlLoop/33_Sensorless/source/SensorlessCanopenOd.c" />
     </folder>
   </project>
 </solution>

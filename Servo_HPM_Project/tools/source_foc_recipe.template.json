@@ -1,0 +1,87 @@
+{
+  "description": "ABI 7 固定电机调试字段模板；不是直接写邮箱的二进制协议。null 必须填写实测值。首轮使用 START 的限时 I/F 模式，sequence_plan 为历史产线配置，本轮不使用。",
+  "abi_version": "0x00070000",
+  "source_recipe": {
+    "recipe_id": null,
+    "recipe_revision": 1,
+    "phase_rs_ohm": null,
+    "phase_ld_h": null,
+    "phase_lq_h": null,
+    "current_base_a": null,
+    "voltage_base_v": null,
+    "rated_current_a": null,
+    "current_limit_a": null,
+    "max_speed_rpm": null,
+    "current_bandwidth_hz": null,
+    "pole_pairs": null,
+    "allow_continuous_rotation": 1
+  },
+  "point_limits_to_calibrate": {
+    "min_phase_rms_a": null,
+    "max_phase_rms_a": null,
+    "max_phase_peak_a": null,
+    "max_rms_imbalance_ratio": null,
+    "max_speed_std_rpm": null,
+    "min_samples": null
+  },
+  "sequence_plan": [
+    {
+      "name": "正向低速",
+      "direction": 1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "正向中速",
+      "direction": 1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "正向高速",
+      "direction": 1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "反向低速",
+      "direction": -1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "反向中速",
+      "direction": -1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "反向高速",
+      "direction": -1,
+      "target_speed_rpm": null,
+      "speed_tolerance_rpm": null,
+      "hold_ms": 2000,
+      "timeout_ms": 10000
+    }
+  ],
+  "startup_debug": {
+    "mask": "0x200",
+    "debug_mode": 2,
+    "current_ramp_ms": 100,
+    "if_hold_ms": 1000,
+    "iq_hold_ms": 200,
+    "ramp_timeout_ms": 3000,
+    "total_timeout_ms": 8000,
+    "run_test_ms": 2000
+  }
+}
